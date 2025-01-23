@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>YourBear</title>
+
+  <!-- Font "Nunito" da Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link 
+    href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" 
+    rel="stylesheet"
+  >
+
+  <style>
+    /* Reset di base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Corpo pagina */
+    body {
+      background: #fffafc; /* sfondo molto chiaro, rosato */
+      font-family: 'Nunito', sans-serif;
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    /* Contenitore principale */
+    .container {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      max-width: 700px;
+      width: 100%;
+      padding: 40px;
+      text-align: center;
+    }
+
+    /* Titoli */
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+      color: #f48fb1;
+    }
+    h2 {
+      font-size: 1.2rem;
+      color: #666;
+      margin-bottom: 30px;
+    }
+
+    /* Galleria immagini */
+    .gallery {
+      position: relative;
+      margin-bottom: 25px;
+    }
+    .gallery img {
+      width: 100%;
+      max-height: 450px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .gallery-controls {
+      margin-top: 10px;
+    }
+    button {
+      background: #f48fb1; 
+      border: none;
+      color: #fff;
+      padding: 12px 18px;
+      font-size: 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      margin: 0 8px;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: #ec407a;
+    }
+
+    /* Box immagine canzone */
+    .song-box {
+      width: 200px;
+      height: 200px;
+      border-radius: 8px;
+      margin: 0 auto 10px;
+      overflow: hidden; /* per arrotondare l'immagine dentro */
+    }
+    .song-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Audio */
+    .audio-title {
+      font-weight: 700;
+      margin: 15px 0 5px;
+      color: #ad1457; 
+      font-size: 1rem;
+    }
+    audio {
+      width: 300px;
+      max-width: 90%;
+      margin-bottom: 10px;
+      outline: none;
+      border-radius: 5px;
+      background-color: #ffe0ec;
+    }
+
+    /* Testo finale con riquadro */
+    .message-box {
+      margin-top: 20px;
+      background-color: #ffe0ec;
+      border-radius: 8px;
+      padding: 20px;
+      text-align: left;
+      line-height: 1.6;
+      color: #444;
+      font-size: 1.05rem;
+    }
+    .message-box strong {
+      font-weight: 700;
+      color: #d81b60;
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 30px 20px;
+      }
+      h1 {
+        font-size: 1.8rem;
+      }
+      h2 {
+        font-size: 1.1rem;
+      }
+      button {
+        font-size: 0.95rem;
+        padding: 10px 16px;
+      }
+      .gallery img {
+        max-height: 350px;
+      }
+      audio {
+        width: 260px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Titoli -->
+    <h1>YourBear</h1>
+    <h2>Da Paolo e Virginia</h2>
+
+    <!-- Galleria di foto (nuovi nomi) -->
+    <div class="gallery">
+      <img id="galleryImage" src="" alt="Foto galleria" />
+      <div class="gallery-controls">
+        <button onclick="prevImage()">Precedente</button>
+        <button onclick="nextImage()">Successiva</button>
+      </div>
+    </div>
+
+    <!-- Unico audio con box immagine canzone -->
+    <div class="audio-section">
+      <!-- Box quadrato con immagine canzone -->
+      <div class="song-box">
+        <img src="immaginecanzone.jpg" alt="Cover canzone" />
+      </div>
+
+      <div class="audio-title">La nostra canzone</div>
+      <audio controls>
+        <source src="Canzone.m4a" type="audio/mp4" />
+        Il tuo browser non supporta l'elemento audio.
+      </audio>
+    </div>
+
+    <!-- Testo finale in riquadro -->
+    <div class="message-box">
+      Ciao mamma. <strong>ti vogliamo bene</strong>, da Paolo e Virginia.
+    </div>
+  </div>
+
+  <script>
+    // Elenco immagini con i NUOVI nomi
+    const images = [
+      "A649C3E7-8C87-4077-B4AC-DAC4EBE578AF.JPG",
+      "364e432b-1080-46e7-85a5-075a4ce901f5.JPG",
+      "9d231301-3655-493d-a831-0df80ccf12b5.JPG",
+      "ccbfa7da-7f48-418f-a874-bbe36e64fba7.JPG",
+      "1ffeb5ba-756e-4125-aa3e-ff0be02ede0e.JPG",
+      "d08803d2-883f-4ed8-9221-a5734f3dc669.JPG",
+      "ecd81317-2929-4fc8-a4a1-dd5f47b40d98.JPG",
+      "38edae40-2363-4646-be61-e6bfa35ec6da.JPG"
+    ];
+
+    let currentIndex = 0;
+    const galleryImage = document.getElementById('galleryImage');
+
+    // Mostra la prima immagine all'avvio
+    window.addEventListener('DOMContentLoaded', () => {
+      if (images.length > 0) {
+        galleryImage.src = images[currentIndex];
+      }
+    });
+
+    function nextImage() {
+      currentIndex = (currentIndex + 1) % images.length;
+      galleryImage.src = images[currentIndex];
+    }
+    function prevImage() {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      galleryImage.src = images[currentIndex];
+    }
+  </script>
+</body>
+</html>
