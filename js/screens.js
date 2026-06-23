@@ -31,9 +31,9 @@
   /* common navigation + popups (delegation per render) */
   function bindCommon() {
     D.$$('[data-go]').forEach(b => b.onclick = (e) => { e.preventDefault(); D.goto(b.dataset.go); });
-    D.$$('[data-tool]').forEach(b => b.onclick = () => {
-      const [tool, topic] = b.dataset.tool.split(':');
-      D.goto(`#/${tool}/${topic}`);
+    D.$$('[data-tool]').forEach(b => {
+      if (!b.dataset.tool.includes(':')) return; // solo i lanciatori "tool:argomento"
+      b.onclick = () => { const [tool, topic] = b.dataset.tool.split(':'); D.goto(`#/${tool}/${topic}`); };
     });
   }
 
@@ -189,7 +189,7 @@
     return `<div class="wrap page">
       ${backSimple(`#/${tool}`, 'Scegli un altro argomento')}
       ${fhead('', `Diritto penale · ${tt[0]}`, t.title)}
-      <div class="fbody" id="ex-host" data-tool="${tool}" data-topic="${arg}"></div>
+      <div class="fbody" id="ex-host" data-ex-tool="${tool}" data-ex-topic="${arg}"></div>
     </div>`;
   };
 
@@ -201,7 +201,7 @@
     if (!toolSecs.includes(sec) || !arg) return;
     const host = D.$('#ex-host');
     if (!host) return;
-    const tool = host.dataset.tool, t = topicById(host.dataset.topic);
+    const tool = host.dataset.exTool, t = topicById(host.dataset.exTopic);
     if (tool === 'multipla') runMultipla(host, t);
     else if (tool === 'verofalso') runVeroFalso(host, t);
     else if (tool === 'aperta') runAperta(host, t);
