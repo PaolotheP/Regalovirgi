@@ -1,0 +1,302 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================== TEMI SIRIO =============================== */
+/* CHIARO è il default (:root). Le classi .dark e .night sul tag <html>      */
+/* ribaltano l'intero sistema. "Auto" è risolto in JS (orario/sistema).      */
+:root {
+  color-scheme: light;
+  --c-bg: 237 242 250;        /* #edf2fa — cielo diurno, arioso */
+  --c-bg-2: 248 250 254;
+  --c-surface: 255 255 255;
+  --c-line: 22 42 82;         /* ardesia per bordi a bassa opacità */
+  --c-fill: 20 40 78;
+  --c-scrim: 18 28 52;
+  --c-text-hi: 14 24 48;
+  --c-text: 40 55 86;
+  --c-text-soft: 84 100 132;
+  --c-text-mute: 122 138 166;
+  --c-glow: 16 118 200;       /* ciano profondo, leggibile sul chiaro */
+  --c-star: 242 106 18;       /* stella accesa: oro-ambra */
+}
+/* SCURO — spazio profondo indaco (nuovo, più ricco del vecchio navy) */
+.dark {
+  color-scheme: dark;
+  --c-bg: 9 11 26;            /* #090b1a — indaco cosmico */
+  --c-bg-2: 14 17 36;
+  --c-surface: 255 255 255;
+  --c-line: 255 255 255;
+  --c-fill: 255 255 255;
+  --c-scrim: 4 6 18;
+  --c-text-hi: 240 245 255;
+  --c-text: 208 219 240;
+  --c-text-soft: 150 168 200;
+  --c-text-mute: 106 122 156;
+  --c-glow: 96 190 255;
+  --c-star: 255 200 110;      /* stelle dorate sul cielo notturno */
+}
+/* NOTTURNO — bassissima luce blu, viraggio ambra (Night Shift) */
+.night {
+  color-scheme: dark;
+  --c-bg: 18 13 6;            /* #120d06 — notte calda */
+  --c-bg-2: 26 19 10;
+  --c-surface: 255 240 214;
+  --c-line: 255 214 160;
+  --c-fill: 255 210 150;
+  --c-scrim: 12 8 3;
+  --c-text-hi: 250 236 210;
+  --c-text: 232 212 178;
+  --c-text-soft: 190 166 128;
+  --c-text-mute: 148 126 92;
+  --c-glow: 255 178 92;       /* l'accento diventa ambra */
+  --c-star: 255 196 120;
+}
+
+* { -webkit-tap-highlight-color: transparent; }
+html { scroll-behavior: smooth; }
+
+body {
+  @apply bg-bg text-text font-sans antialiased;
+  min-height: 100vh;
+  overflow-x: hidden;
+  transition: background-color .5s ease, color .35s ease;
+}
+
+::selection { background: rgb(var(--c-glow) / 0.28); color: rgb(var(--c-text-hi)); }
+
+::-webkit-scrollbar { width: 11px; height: 11px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--c-fill) / 0.3);
+  border-radius: 20px; border: 3px solid transparent; background-clip: padding-box;
+}
+::-webkit-scrollbar-thumb:hover { background: rgb(var(--c-fill) / 0.5); background-clip: padding-box; }
+
+/* ---------- Onda radiale al cambio tema (View Transitions API) ---------- */
+::view-transition-old(root) { animation: none; }
+::view-transition-new(root) {
+  animation: sirio-reveal .7s cubic-bezier(.2,.8,.2,1);
+  clip-path: circle(0 at var(--vt-x, 50%) var(--vt-y, 20%));
+}
+@keyframes sirio-reveal {
+  to { clip-path: circle(160% at var(--vt-x, 50%) var(--vt-y, 20%)); }
+}
+::view-transition-new(root) { animation-fill-mode: forwards; }
+
+@layer components {
+  /* ------------ Liquid glass: superfici vetrose per ogni tema ----------- */
+  /* base = TEMA CHIARO (default) */
+  .glass {
+    position: relative;
+    background:
+      linear-gradient(155deg, rgba(255,255,255,0.92), rgba(255,255,255,0.62) 60%),
+      radial-gradient(130% 90% at 12% -10%, rgba(120,180,255,0.15), transparent 55%);
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    border: 1px solid rgba(20,42,82,0.10);
+    box-shadow: 0 12px 34px rgba(30,52,100,0.12), inset 0 1px 0 rgba(255,255,255,0.9);
+  }
+  .glass-strong {
+    position: relative;
+    background:
+      linear-gradient(160deg, rgba(255,255,255,0.97), rgba(238,244,253,0.9)),
+      radial-gradient(120% 80% at 85% -10%, rgba(78,150,255,0.12), transparent 55%);
+    backdrop-filter: blur(26px) saturate(165%);
+    -webkit-backdrop-filter: blur(26px) saturate(165%);
+    border: 1px solid rgba(20,42,82,0.12);
+    box-shadow: 0 20px 50px rgba(30,52,100,0.14), inset 0 1px 0 rgba(255,255,255,1);
+  }
+  .glass-brand {
+    position: relative;
+    background:
+      linear-gradient(155deg, rgba(47,123,255,0.13), rgba(78,195,255,0.05) 60%),
+      radial-gradient(130% 90% at 12% -10%, rgba(120,180,255,0.20), transparent 55%);
+    border: 1px solid rgba(47,123,255,0.28);
+    box-shadow: 0 0 0 1px rgba(47,123,255,0.10), 0 20px 50px rgba(47,123,255,0.14), inset 0 1px 0 rgba(255,255,255,0.9);
+  }
+  .glass-warm {
+    position: relative;
+    background:
+      linear-gradient(155deg, rgba(242,106,18,0.12), rgba(255,160,90,0.05) 60%),
+      radial-gradient(130% 90% at 12% -10%, rgba(255,190,130,0.20), transparent 55%);
+    border: 1px solid rgba(242,106,18,0.26);
+    box-shadow: 0 0 0 1px rgba(242,106,18,0.10), 0 20px 50px rgba(242,106,18,0.12), inset 0 1px 0 rgba(255,255,255,0.9);
+  }
+  .glass::before, .glass-strong::before, .glass-brand::before, .glass-warm::before {
+    content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+    background: linear-gradient(180deg, rgba(255,255,255,0.5), transparent 22%);
+    -webkit-mask: linear-gradient(#000, transparent 40%); mask: linear-gradient(#000, transparent 40%);
+    opacity: .5;
+  }
+
+  /* --- TEMA SCURO: vetro indaco profondo con riflessi freddi --- */
+  .dark .glass {
+    background:
+      linear-gradient(155deg, rgba(255,255,255,0.10), rgba(255,255,255,0.02) 55%),
+      radial-gradient(130% 90% at 12% -10%, rgba(120,200,255,0.14), transparent 55%);
+    border: 1px solid rgba(255,255,255,0.11);
+    box-shadow: 0 14px 44px rgba(2,5,18,0.55), inset 0 1px 0 rgba(255,255,255,0.18), inset 0 -1px 0 rgba(0,0,0,0.22);
+  }
+  .dark .glass-strong {
+    background:
+      linear-gradient(160deg, rgba(30,38,80,0.92), rgba(10,14,34,0.84)),
+      radial-gradient(120% 80% at 85% -10%, rgba(96,190,255,0.12), transparent 55%);
+    border: 1px solid rgba(255,255,255,0.12);
+    box-shadow: 0 22px 60px rgba(2,4,16,0.6), inset 0 1px 0 rgba(255,255,255,0.16);
+  }
+  .dark .glass-brand {
+    background:
+      linear-gradient(155deg, rgba(96,190,255,0.20), rgba(47,123,255,0.05) 60%),
+      radial-gradient(130% 90% at 12% -10%, rgba(140,220,255,0.20), transparent 55%);
+    border: 1px solid rgba(130,205,255,0.30);
+    box-shadow: 0 0 0 1px rgba(96,190,255,0.14), 0 24px 66px rgba(47,123,255,0.22), inset 0 1px 0 rgba(255,255,255,0.22);
+  }
+  .dark .glass-warm {
+    background:
+      linear-gradient(155deg, rgba(255,160,90,0.18), rgba(242,106,18,0.05) 60%),
+      radial-gradient(130% 90% at 12% -10%, rgba(255,190,130,0.20), transparent 55%);
+    border: 1px solid rgba(255,170,100,0.32);
+    box-shadow: 0 0 0 1px rgba(255,138,61,0.14), 0 24px 66px rgba(242,106,18,0.18), inset 0 1px 0 rgba(255,255,255,0.18);
+  }
+  .dark .glass::before, .dark .glass-strong::before, .dark .glass-brand::before, .dark .glass-warm::before {
+    background: linear-gradient(180deg, rgba(255,255,255,0.12), transparent 22%); opacity: .7;
+  }
+
+  /* --- TEMA NOTTURNO: vetro caldo, zero luce blu --- */
+  .night .glass {
+    background:
+      linear-gradient(155deg, rgba(255,214,160,0.10), rgba(255,214,160,0.02) 55%),
+      radial-gradient(130% 90% at 12% -10%, rgba(255,190,120,0.10), transparent 55%);
+    border: 1px solid rgba(255,214,160,0.14);
+    box-shadow: 0 14px 44px rgba(8,5,1,0.6), inset 0 1px 0 rgba(255,230,190,0.14);
+  }
+  .night .glass-strong {
+    background:
+      linear-gradient(160deg, rgba(52,38,20,0.94), rgba(28,20,10,0.88)),
+      radial-gradient(120% 80% at 85% -10%, rgba(255,178,92,0.10), transparent 55%);
+    border: 1px solid rgba(255,214,160,0.16);
+    box-shadow: 0 22px 60px rgba(6,4,1,0.65), inset 0 1px 0 rgba(255,230,190,0.12);
+  }
+  .night .glass-brand, .night .glass-warm {
+    background:
+      linear-gradient(155deg, rgba(255,178,92,0.18), rgba(242,106,18,0.04) 60%),
+      radial-gradient(130% 90% at 12% -10%, rgba(255,200,130,0.18), transparent 55%);
+    border: 1px solid rgba(255,178,92,0.32);
+    box-shadow: 0 0 0 1px rgba(255,178,92,0.14), 0 24px 66px rgba(242,106,18,0.16), inset 0 1px 0 rgba(255,230,190,0.16);
+  }
+  .night .glass::before, .night .glass-strong::before, .night .glass-brand::before, .night .glass-warm::before {
+    background: linear-gradient(180deg, rgba(255,230,190,0.10), transparent 22%); opacity: .6;
+  }
+
+  /* Card che si sollevano in hover */
+  .card-hover { transition: transform .32s cubic-bezier(.2,.8,.2,1), box-shadow .32s, border-color .32s; }
+  .card-hover:hover {
+    transform: translateY(-5px);
+    border-color: rgb(var(--c-glow) / 0.45);
+    box-shadow: 0 0 0 1px rgb(var(--c-glow) / 0.22), 0 26px 60px rgb(var(--c-glow) / 0.16), inset 0 1px 0 rgba(255,255,255,0.5);
+  }
+
+  .text-gradient {
+    background: linear-gradient(110deg, #1a49b8 0%, #2f7bff 35%, #1482d2 60%, #2f7bff 85%, #1a49b8 100%);
+    background-size: 220% auto;
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    animation: textShine 7s linear infinite;
+  }
+  .dark .text-gradient {
+    background: linear-gradient(110deg, #cfeaff 0%, #6cc0ff 30%, #2f7bff 55%, #7cd0ff 80%, #cfeaff 100%);
+    background-size: 220% auto; -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .night .text-gradient {
+    background: linear-gradient(110deg, #ffd7a8 0%, #ffb066 35%, #f28a3d 60%, #ffb066 85%, #ffd7a8 100%);
+    background-size: 220% auto; -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .text-gradient-warm {
+    background: linear-gradient(110deg, #f26a12, #ff8a3d 45%, #c9530a 80%, #f26a12);
+    background-size: 220% auto; -webkit-background-clip: text; background-clip: text; color: transparent;
+    animation: textShine 7s linear infinite;
+  }
+  .dark .text-gradient-warm, .night .text-gradient-warm {
+    background: linear-gradient(110deg, #ffb066, #ff8a3d 45%, #ffd7a8 80%, #ffb066);
+    background-size: 220% auto; -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  @keyframes textShine { to { background-position: 220% center; } }
+
+  .eyebrow { @apply text-xs font-bold uppercase tracking-[0.2em] font-sans; color: rgb(var(--c-glow) / 0.95); }
+
+  /* -------------------------------- Bottoni ------------------------------ */
+  .btn {
+    position: relative; overflow: hidden;
+    @apply inline-flex items-center justify-center gap-2 rounded-full font-semibold font-sans
+           transition-all duration-200 select-none cursor-pointer whitespace-nowrap;
+  }
+  .btn:active { transform: translateY(0) scale(0.97); }
+  .btn-primary {
+    background: linear-gradient(135deg, #5cc6ff, #2f7bff 55%, #1e5fe0);
+    @apply text-white;
+    box-shadow: 0 10px 30px rgba(47,123,255,0.4), inset 0 1px 0 rgba(255,255,255,0.35);
+  }
+  .btn-primary::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(110deg, transparent 32%, rgba(255,255,255,0.4) 50%, transparent 68%);
+    transform: translateX(-130%); transition: transform .7s cubic-bezier(.2,.8,.2,1);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 18px 48px rgba(47,123,255,0.55), inset 0 1px 0 rgba(255,255,255,0.45); }
+  .btn-primary:hover::after { transform: translateX(130%); }
+  .btn-primary:disabled { opacity: .5; transform: none; box-shadow: none; cursor: not-allowed; }
+  /* nel notturno il primario diventa ambra: zero luce blu */
+  .night .btn-primary {
+    background: linear-gradient(135deg, #ffb066, #ff8a3d 55%, #f26a12);
+    box-shadow: 0 10px 30px rgba(242,106,18,0.4), inset 0 1px 0 rgba(255,255,255,0.3);
+  }
+  .night .btn-primary:hover { box-shadow: 0 18px 48px rgba(242,106,18,0.55), inset 0 1px 0 rgba(255,255,255,0.4); }
+  .btn-warm {
+    background: linear-gradient(135deg, #ffb066, #ff8a3d 55%, #f26a12);
+    @apply text-white;
+    box-shadow: 0 10px 30px rgba(242,106,18,0.4), inset 0 1px 0 rgba(255,255,255,0.35);
+  }
+  .btn-warm:hover { transform: translateY(-2px); box-shadow: 0 18px 48px rgba(242,106,18,0.55), inset 0 1px 0 rgba(255,255,255,0.45); }
+  .btn-ghost { @apply glass text-text-hi; }
+  .btn-ghost:hover { border-color: rgb(var(--c-glow) / 0.4); transform: translateY(-2px); }
+
+  .ripple-ink {
+    position: absolute; border-radius: 9999px; pointer-events: none;
+    background: currentColor; opacity: .3; transform: scale(0);
+    animation: ripple .62s cubic-bezier(.2,.8,.2,1) forwards;
+  }
+
+  .frosted { filter: blur(2.5px) saturate(0.7) brightness(0.9); pointer-events: none; user-select: none; }
+
+  .skeleton { position: relative; overflow: hidden; background: rgb(var(--c-fill) / 0.07); border-radius: .75rem; }
+  .skeleton::after {
+    content: ""; position: absolute; inset: 0; transform: translateX(-100%);
+    background: linear-gradient(90deg, transparent, rgb(var(--c-fill) / 0.10), transparent);
+    animation: skeletonSweep 1.5s infinite;
+  }
+  @keyframes skeletonSweep { 100% { transform: translateX(100%); } }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  /* prosa giuridica in serif da lettura */
+  .prose-nplus p { @apply text-text leading-relaxed mb-3 font-serif text-[1.05rem]; }
+  .prose-nplus strong { @apply text-text-hi font-semibold; }
+  .prose-nplus em { @apply text-glow not-italic font-medium; }
+}
+
+/* Campo stellato dello sfondo: spento di giorno, acceso di notte */
+.sirio-stars { opacity: 0; }
+.dark .sirio-stars { opacity: 0.9; }
+.night .sirio-stars { opacity: 0.55; }
+
+/* ======================= ACCESSIBILITÀ (classi html) ====================== */
+/* Modalità DSA: spaziatura generosa, righe corte, niente corsivi decorativi */
+.dsa body { letter-spacing: 0.03em; word-spacing: 0.12em; line-height: 1.85; }
+.dsa .prose-nplus p { letter-spacing: 0.035em; word-spacing: 0.16em; line-height: 2; max-width: 62ch; }
+.dsa em { font-style: normal; }
+/* Riduzione del movimento (oltre a MotionConfig) */
+.rm *, .rm *::before, .rm *::after {
+  animation-duration: .001s !important;
+  transition-duration: .08s !important;
+}
