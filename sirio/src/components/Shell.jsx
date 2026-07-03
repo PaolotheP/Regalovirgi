@@ -9,6 +9,9 @@ import {
   Sun, Moon, MoonStar, SunMoon, Flame, MessageSquareHeart, PersonStanding, Check,
 } from "lucide-react";
 import { Logo } from "./Logo.jsx";
+import ErrorBoundary from "./ErrorBoundary.jsx";
+import SubjectSwitchModal from "./SubjectSwitch.jsx";
+import { currentSubject } from "../lib/subject.js";
 import { useStore, useSelectors, resolveTheme } from "../lib/store.jsx";
 import DirexiTour from "../features/Direxi.jsx";
 import DirexiCompanion from "./DirexiCompanion.jsx";
@@ -52,6 +55,23 @@ const NAV = [
   { group: "Beta" },
   { to: "/app/feedback", icon: MessageSquareHeart, label: "Feedback beta", tour: "feedback" },
 ];
+
+/* Materia corrente: chip sopra il menu, apre il cambio costellazione */
+function SubjectChip({ onOpen }) {
+  const s = currentSubject();
+  return (
+    <button onClick={onOpen} data-tour="materia" title="Cambia materia"
+      className="mx-4 mb-1 mt-1 flex items-center gap-2.5 rounded-xl glass px-3 py-2.5 text-left transition hover:border-glow/40">
+      <span className="grid h-7 w-7 shrink-0 place-items-center rounded-lg text-sm"
+        style={{ background: `hsl(${s.hue} 70% 55% / 0.15)`, color: `hsl(${s.hue} 80% 60%)` }}>✦</span>
+      <span className="min-w-0 flex-1">
+        <span className="block text-[0.6rem] font-bold uppercase tracking-[0.16em] text-text-mute">Materia</span>
+        <span className="block truncate text-sm font-semibold text-text-hi">{s.nome}</span>
+      </span>
+      <span className="text-[0.65rem] font-semibold text-glow">Cambia</span>
+    </button>
+  );
+}
 
 function NavItems({ onNavigate }) {
   const sel = useSelectors();
@@ -179,7 +199,9 @@ function depthOf(path) {
 
 export default function Shell() {
   const [open, setOpen] = useState(false);
+  const openedAt = useRef(0);
   const [a11yOpen, setA11yOpen] = useState(false);
+  const [subjOpen, setSubjOpen] = useState(false);
   const { state } = useStore();
   const nav = useNavigate();
   const loc = useLocation();
@@ -205,23 +227,29 @@ export default function Shell() {
         <div className="flex h-16 items-center px-5">
           <button onClick={() => nav("/app")}><Logo /></button>
         </div>
+        <SubjectChip onOpen={() => setSubjOpen(true)} />
         <div className="no-scrollbar flex-1 overflow-y-auto" data-tour-scroller>
           <NavItems />
         </div>
       </motion.aside>
 
-      {/* Drawer mobile — apertura fluida */}
+      {/* Drawer mobile — apertura fluida.
+          Tween breve (non spring a coda lunga) + scrim "indulgente": un tocco
+          arrivato mentre il menu si sta ancora aprendo non deve richiuderlo
+          (era la causa del "bisogna premere due volte" segnalato in beta). */}
       <AnimatePresence>
         {open && (
           <>
             <motion.div className="fixed inset-0 z-40 bg-scrim/60 backdrop-blur-sm lg:hidden"
-              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setOpen(false)} />
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+              onClick={() => { if (Date.now() - openedAt.current > 420) setOpen(false); }} />
             <motion.aside className="fixed inset-y-0 left-0 z-50 flex w-72 flex-col border-r border-line/10 bg-bg-2/95 backdrop-blur-xl lg:hidden"
-              initial={{ x: "-100%" }} animate={{ x: 0 }} exit={{ x: "-100%" }} transition={{ type: "spring", stiffness: 380, damping: 38 }}>
+              initial={{ x: "-100%" }} animate={{ x: 0 }} exit={{ x: "-100%" }} transition={{ duration: 0.26, ease: [0.2, 0.8, 0.2, 1] }}>
               <div className="flex h-16 items-center justify-between px-5">
                 <Logo />
                 <button onClick={() => setOpen(false)} className="grid h-9 w-9 place-items-center rounded-lg border border-line/10 text-text-mute"><X size={18} /></button>
               </div>
+              <SubjectChip onOpen={() => setSubjOpen(true)} />
               <div className="no-scrollbar flex-1 overflow-y-auto">
                 <NavItems onNavigate={() => setOpen(false)} />
               </div>
@@ -232,7 +260,7 @@ export default function Shell() {
 
       {/* Top bar */}
       <header className="sticky top-0 z-30 flex h-16 items-center gap-2.5 border-b border-line/8 bg-bg-2/70 px-4 backdrop-blur-xl lg:px-8">
-        <button className="grid h-10 w-10 place-items-center rounded-xl glass lg:hidden" onClick={() => setOpen(true)}><Menu size={20} /></button>
+        <button className="grid h-10 w-10 place-items-center rounded-xl glass lg:hidden" aria-label="Apri il menu" title="Apri il menu" onClick={() => { openedAt.current = Date.now(); setOpen(true); }}><Menu size={20} /></button>
         <div className="lg:hidden"><Logo showText={false} /></div>
         {showBack && (
           <button onClick={() => nav(-1)} aria-label="Indietro"
@@ -278,7 +306,9 @@ export default function Shell() {
             animate={{ opacity: 1, x: 0, scale: 1 }}
             exit={{ opacity: 0, x: dir * -24, scale: 0.995 }}
             transition={{ duration: 0.32, ease: [0.2, 0.8, 0.2, 1] }}>
-            <Outlet />
+            <ErrorBoundary resetKey={loc.pathname}>
+              <Outlet />
+            </ErrorBoundary>
           </motion.div>
         </AnimatePresence>
       </main>
@@ -287,6 +317,7 @@ export default function Shell() {
       <DirexiTour />
       <DirexiCompanion />
       <A11yPanel open={a11yOpen} onClose={() => setA11yOpen(false)} />
+      <SubjectSwitchModal open={subjOpen} onClose={() => setSubjOpen(false)} />
     </div>
   );
 }

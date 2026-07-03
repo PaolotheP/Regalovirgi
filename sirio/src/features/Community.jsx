@@ -10,6 +10,7 @@ import { Card, Button, Pill, Progress, toast, Bars, Counter } from "../component
 import { PageHeader, Avatar, useComposer } from "./common.jsx";
 import { FANTASY_PEOPLE } from "../data/contacts.js";
 import { MENTORI, QA as QA_DATA, BANDI, TWIN, COHORT, COSTUDY_ROOMS, COSTUDY_PEOPLE } from "../data/misc.js";
+import { currentSubject, currentSubjectId } from "../lib/subject.js";
 import { cn } from "../lib/utils.js";
 
 /* ------------------------------ CLASSIFICA ----------------------------- */
@@ -56,7 +57,7 @@ export function Classifica() {
                   {!r.you && <Avatar name={state.anon ? "?" : r.nome} hue={r.hue} size={30} />}
                   <span className="flex-1 font-semibold text-text-hi">{r.you ? "Tu" : state.anon ? `Candidato ${i + 1}` : r.nome}</span>
                   <span className="font-display font-bold text-glow tabular-nums">{r.score}</span>
-                  {!r.you && !state.anon && <button onClick={() => comp.open({ name: r.nome, defaultText: `Ciao ${r.nome.split(" ")[0]}, prepariamo lo stesso esame di Diritto penale: ci confrontiamo sul metodo?` })} className="text-text-mute hover:text-glow"><MessageCircle size={16} /></button>}
+                  {!r.you && !state.anon && <button onClick={() => comp.open({ name: r.nome, defaultText: `Ciao ${r.nome.split(" ")[0]}, prepariamo lo stesso esame di ${currentSubject().nome}: ci confrontiamo sul metodo?` })} className="text-text-mute hover:text-glow"><MessageCircle size={16} /></button>}
                 </div>
               ))}
             </div>
@@ -229,7 +230,7 @@ export function Costudy() {
 
   function createRoom() {
     const code = Array.from({ length: 8 }, () => "abcdefghijklmnopqrstuvwxyz0123456789"[Math.floor(Math.random() * 36)]).join("");
-    setMyLink(`https://meet.jit.si/Sirio-DirittoPenale-${code}`);
+    setMyLink(`https://meet.jit.si/Sirio-${currentSubjectId() === "tributario" ? "DirittoTributario" : "DirittoPenale"}-${code}`);
   }
   function copyLink() { navigator.clipboard?.writeText(myLink).then(() => toast("Link copiato")); }
 
@@ -274,7 +275,7 @@ export function Costudy() {
             <div className="flex flex-wrap items-center gap-2 rounded-xl2 border border-line/10 bg-fill/[0.03] p-2 pl-4">
               <span className="min-w-0 flex-1 truncate text-sm text-glow">{myLink}</span>
               <Button size="sm" variant="ghost" onClick={copyLink}>Copia link</Button>
-              <Button as="a" size="sm" href={`https://wa.me/?text=${encodeURIComponent("Studiamo insieme Diritto penale in videochiamata: " + myLink)}`} target="_blank" rel="noreferrer">
+              <Button as="a" size="sm" href={`https://wa.me/?text=${encodeURIComponent(`Studiamo insieme ${currentSubject().nome} in videochiamata: ` + myLink)}`} target="_blank" rel="noreferrer">
                 <MessageCircle size={15} /> Condividi
               </Button>
               <Button as="a" size="sm" href={myLink} target="_blank" rel="noreferrer"><Video size={15} /> Entra</Button>
@@ -364,7 +365,7 @@ export function QA() {
   return (
     <div>
       <PageHeader eyebrow="Community" title="Domande & Risposte"
-        sub={'Sull\'esame di Diritto penale — Università di Bari "Aldo Moro". Vota le risposte più utili.'} />
+        sub={currentSubjectId() === "tributario" ? 'Sull\'esame di Diritto tributario — Università LUM "Giuseppe Degennaro". Vota le risposte più utili.' : 'Sull\'esame di Diritto penale — Università di Bari "Aldo Moro". Vota le risposte più utili.'} />
       <div className="space-y-4">
         {QA_DATA.map((q, i) => {
           const v = state.votes[i] || 0;
@@ -393,7 +394,7 @@ export function QA() {
           );
         })}
       </div>
-      <p className="mt-6 text-center text-xs text-text-mute">Contesto: insegnamento di Diritto penale, Dipartimento di Giurisprudenza dell'Università di Bari. Le risposte raccolgono l'esperienza di studenti; nessuna frase è attribuita a docenti reali.</p>
+      <p className="mt-6 text-center text-xs text-text-mute">{currentSubjectId() === "tributario" ? "Contesto: insegnamento di Diritto tributario, Facoltà di Economia dell'Università LUM. Le risposte raccolgono l'esperienza di studenti; nessuna frase è attribuita a docenti reali." : "Contesto: insegnamento di Diritto penale, Dipartimento di Giurisprudenza dell'Università di Bari. Le risposte raccolgono l'esperienza di studenti; nessuna frase è attribuita a docenti reali."}</p>
     </div>
   );
 }

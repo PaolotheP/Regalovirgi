@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { MotionConfig } from "framer-motion";
 import Background from "./components/Background.jsx";
+import ErrorBoundary from "./components/ErrorBoundary.jsx";
 import Shell from "./components/Shell.jsx";
 import { Toaster } from "./components/ui.jsx";
 import { useStore } from "./lib/store.jsx";
@@ -37,11 +38,13 @@ function RequireOnboard({ children }) {
 
 export default function App() {
   const { state } = useStore();
+  const { pathname } = useLocation();
   return (
     <MotionConfig reducedMotion={state.a11y.reduceMotion ? "always" : "user"}>
       <Background />
       <Toaster />
       <ScrollTop />
+      <ErrorBoundary resetKey={pathname}>
       <Routes>
         <Route path="/" element={<Welcome />} />
         <Route path="/onboarding" element={<Onboarding />} />
@@ -83,6 +86,7 @@ export default function App() {
 
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
+      </ErrorBoundary>
     </MotionConfig>
   );
 }

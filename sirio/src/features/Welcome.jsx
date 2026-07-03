@@ -41,7 +41,7 @@ export default function Welcome() {
         <Logo />
         <div className="flex items-center gap-2">
           <Button variant="ghost" size="sm" onClick={() => nav("/pricing")}>Vedi i piani</Button>
-          <Button size="sm" onClick={start}>{state.onboarded ? "Riprendi" : "Inizia"} <ArrowRight size={15} /></Button>
+          <Button size="sm" onClick={start}>{state.onboarded ? "Riprendi lo studio" : "Inizia"} <ArrowRight size={15} /></Button>
         </div>
       </header>
 
@@ -56,7 +56,7 @@ export default function Welcome() {
               Il tuo esame è un cielo: ogni argomento una stella da accendere. Un corso completo e guidato di Neldiritto che si adatta al tuo tempo, giorno per giorno, fino alla prova.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Button size="lg" onClick={start}>{state.onboarded ? "Riprendi il percorso" : "Crea il tuo piano di studi personalizzato"} <ArrowRight size={18} /></Button>
+              <Button size="lg" onClick={start}>{state.onboarded ? "Riprendi lo studio" : "Crea il tuo piano di studi personalizzato"} <ArrowRight size={18} /></Button>
             </div>
             <div className="mt-8 flex flex-wrap gap-5 text-sm text-text-soft">
               <span className="inline-flex items-center gap-2"><ShieldCheck size={16} className="text-glow" /> Materiali certificati</span>

@@ -4,9 +4,12 @@ import { today, toISO, uid, clamp } from "./utils.js";
 import { TOPICS } from "../data/curriculum.js";
 import { generatePlan, remodelPlan } from "./plan.js";
 import { leitnerNextDue, memoryTemp } from "./scheduling.js";
+import { currentSubject, currentSubjectId } from "./subject.js";
 
-const KEY = "sirio_v1";
-const OLD_KEY = "nplus_beta_v1"; // migrazione dalla beta N+
+/* Ogni materia salva i propri progressi in un bucket separato:
+   penale = "sirio_v1" (chiave storica), tributario = "sirio_v1:tributario". */
+const KEY = currentSubject().storageKey;
+const OLD_KEY = currentSubjectId() === "penale" ? "nplus_beta_v1" : null; // migrazione dalla beta N+
 
 /* ------------------------------ initial state -------------------------- */
 function freshState() {
@@ -17,9 +20,9 @@ function freshState() {
       name: "",
       mode: "esame",
       university: "",
-      faculty: "Giurisprudenza",
+      faculty: currentSubjectId() === "tributario" ? "Economia" : "Giurisprudenza",
       year: "",
-      exam: "penale",
+      exam: currentSubjectId(),
       examDate: "",
       hoursPerDay: 2,
       goal: 80,
@@ -53,10 +56,21 @@ function freshState() {
 
 function load() {
   try {
-    const raw = localStorage.getItem(KEY) || localStorage.getItem(OLD_KEY);
+    const raw = localStorage.getItem(KEY) || (OLD_KEY && localStorage.getItem(OLD_KEY));
     if (!raw) return freshState();
     const parsed = JSON.parse(raw);
     const base = freshState();
+    /* bucket appena seminato dal cambio materia: porta con sé solo le
+       preferenze condivise (tema, accessibilità, nome, tour già visto) */
+    if (parsed.__seed) {
+      return {
+        ...base,
+        theme: ["light", "dark", "night", "auto"].includes(parsed.theme) ? parsed.theme : base.theme,
+        a11y: { ...base.a11y, ...(parsed.a11y || {}) },
+        tourSeen: !!parsed.tourSeen,
+        profile: { ...base.profile, name: parsed.profile?.name || "" },
+      };
+    }
     const st = { ...base, ...parsed, profile: { ...base.profile, ...(parsed.profile || {}) }, a11y: { ...base.a11y, ...(parsed.a11y || {}) } };
     // il vecchio tema "dark" della beta resta valido; tutto il resto migra pulito
     if (!["light", "dark", "night", "auto"].includes(st.theme)) st.theme = "light";

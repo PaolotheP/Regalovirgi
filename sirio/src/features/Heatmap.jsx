@@ -2,7 +2,8 @@ import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Star, Sparkles, Info, ArrowRight, AlarmClock, Target, BookOpen } from "lucide-react";
-import { CHAPTERS, topicsByChapter } from "../data/curriculum.js";
+import { CHAPTERS, PARTS, topicsByChapter } from "../data/curriculum.js";
+const partBadge = (p) => (PARTS.length > 1 ? (p === "generale" ? "PG · " : "PS · ") : "");
 import { useSelectors } from "../lib/store.jsx";
 import { Card, Pill, Button, Modal, Ring } from "../components/ui.jsx";
 import { PageHeader } from "./common.jsx";
@@ -185,7 +186,7 @@ export default function Heatmap() {
         {clusters.map(({ ch, pts }) => (
           <div key={`${ch.part}-${ch.n}`}>
             <div className="mb-2 font-sans text-xs font-bold uppercase tracking-wider text-text-mute">
-              {ch.part === "generale" ? "PG" : "PS"} · Cap. {ch.n} — {ch.title}
+              {partBadge(ch.part)}Cap. {ch.n} — {ch.title}
             </div>
             <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-4">
               {pts.map(({ t }) => {

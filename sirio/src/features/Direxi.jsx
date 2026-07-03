@@ -64,6 +64,8 @@ const Direxi = DirexiStar;
 const STEPS = [
   { target: null, icon: Sparkles, mood: "hi", title: "Ciao, sono Direxi ✨",
     text: "Sono la tua stella-compagna su Sirio. Vivo nell'angolo dello schermo: quando hai un dubbio su una funzione, tocca il «?» e te la spiego. Ora ti mostro il cielo, funzione per funzione. Partiamo dal cuore di tutto: il piano." },
+  { target: "materia", icon: BookOpen, mood: "point", title: "La tua materia",
+    text: "Qui vedi la materia che stai preparando. Ogni materia è una costellazione a sé: piano, stelle e progressi restano separati. Con «Cambia» passi all'altro cielo quando vuoi — al ritorno ritrovi tutto come l'avevi lasciato." },
   { target: "piano", icon: CalendarRange, mood: "point", title: "Il tuo Piano di studi",
     text: "È il centro della piattaforma: distribuisce gli argomenti sui giorni che ti separano dall'esame, in proporzione alle pagine dell'indice, e riserva gli ultimi giorni al solo ripasso. Se salti dei giorni si rimodella da solo, e dal calendario puoi trascinare gli argomenti dove preferisci." },
   { target: "heatmap", icon: Star, mood: "point", title: "La tua costellazione",

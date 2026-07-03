@@ -4,6 +4,8 @@ import { ArrowLeft, MessageCircle, Phone, Mail, Send, BadgeCheck } from "lucide-
 import { Modal, Button, Textarea, toast, Pill } from "../components/ui.jsx";
 import { HelpDot } from "../components/DirexiCompanion.jsx";
 import { waLink, telLink, mailtoLink, getContact } from "../data/contacts.js";
+import { currentSubject } from "../lib/subject.js";
+const SUBJ_NAME = currentSubject().nome;
 import { cn } from "../lib/utils.js";
 
 export function PageHeader({ eyebrow, title, sub, right, helpKey }) {
@@ -76,7 +78,7 @@ function ComposerModal({ state, onClose }) {
     // set once
     queueMicrotask(() => setText(state.defaultText));
   }
-  const subject = "Preparazione esame di Diritto penale — Sirio";
+  const subject = `Preparazione esame di ${SUBJ_NAME} — Sirio`;
   const reset = () => { setText(""); onClose(); };
 
   return (

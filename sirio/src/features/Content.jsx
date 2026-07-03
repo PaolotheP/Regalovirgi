@@ -34,6 +34,12 @@ function Player({ kind }) {
       <div>
         <PageHeader eyebrow="Contenuti" title={kind === "video" ? "Video lezioni" : "Podcast di studio"}
           sub={kind === "video" ? "Lezioni brevi, agganciate alle pagine del libro." : "I contenuti di studio da ascoltare, mentre fai altro."} />
+        {list.length === 0 ? (
+          <Card className="p-8 text-center">
+            <p className="text-text-soft">Per questa materia i contenuti {kind === "video" ? "video" : "audio"} sono in preparazione presso l'editore.</p>
+            <Button className="mt-4" onClick={() => nav("/app/argomenti")}>Vai agli argomenti</Button>
+          </Card>
+        ) : (
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {list.map((t) => (
             <Card key={t.id} hover onClick={() => nav(`/app/${kind}?t=${t.id}`)} className="p-5">
@@ -44,6 +50,7 @@ function Player({ kind }) {
             </Card>
           ))}
         </div>
+        )}
       </div>
     );
   }

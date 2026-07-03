@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, ArrowLeft, Check, GraduationCap, Landmark, Scale, Sparkles, Upload, FileText, MessageSquareHeart, Bug, Lightbulb, Rocket } from "lucide-react";
@@ -12,6 +12,8 @@ import Background from "../components/Background.jsx";
 import { Button, Input, Segmented, Ring, Select } from "../components/ui.jsx";
 import { DirexiStar } from "./Direxi.jsx";
 import PlanForging from "./PlanForging.jsx";
+import { SubjectCards, performSubjectSwitch } from "../components/SubjectSwitch.jsx";
+import { currentSubject, currentSubjectId, getSubject } from "../lib/subject.js";
 import { daysBetween, parseDate, today } from "../lib/utils.js";
 import { cn } from "../lib/utils.js";
 
@@ -23,6 +25,20 @@ export default function Onboarding() {
   const [forging, setForging] = useState(false);
 
   const set = (patch) => dispatch({ type: "PATCH_PROFILE", patch });
+
+  /* Se si arriva qui da un cambio materia fatto durante l'onboarding,
+     ripristina quanto già inserito (nome, date…) senza rifare i passi. */
+  useEffect(() => {
+    try {
+      const d = JSON.parse(sessionStorage.getItem("sirio_onb_draft") || "null");
+      if (d && d.subject === currentSubjectId()) {
+        sessionStorage.removeItem("sirio_onb_draft");
+        if (d.patch) dispatch({ type: "PATCH_PROFILE", patch: d.patch });
+        if (typeof d.step === "number") setStep(d.step);
+      }
+    } catch {}
+    // eslint-disable-next-line
+  }, []);
 
   const steps = useMemo(() => {
     const arr = [
@@ -178,7 +194,7 @@ function StepBody({ stepKey, p, set }) {
         <h1 className="font-display text-3xl font-bold text-text-hi">Ti prepari per un esame o un concorso?</h1>
         <Segmented className="mt-6" cols={2} value={p.mode}
           onChange={(v) => set({ mode: v })}
-          options={[{ value: "esame", label: "Esame universitario", desc: "Diritto penale a lezione" }, { value: "concorso", label: "Concorso pubblico", desc: "Magistratura, notariato…" }]} />
+          options={[{ value: "esame", label: "Esame universitario", desc: `${currentSubject().nome} a lezione` }, { value: "concorso", label: "Concorso pubblico", desc: "Magistratura, notariato…" }]} />
         <AnimatePresence>
           {p.mode === "esame" && (
             <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} className="mt-6 space-y-4 overflow-visible">
@@ -207,19 +223,28 @@ function StepBody({ stepKey, p, set }) {
       </div>
     );
 
-  if (stepKey === "esame")
+  if (stepKey === "esame") {
+    const subj = currentSubject();
     return (
       <div>
-        <h1 className="font-display text-3xl font-bold text-text-hi">Per quale esame orale ti prepari?</h1>
-        <p className="mt-2 text-text-soft">In questa beta è disponibile il Diritto penale (parte generale e speciale).</p>
-        <div className="mt-6 flex items-center gap-4 rounded-xl3 glass-brand p-5">
-          <div className="grid h-14 w-14 place-items-center rounded-2xl bg-brand-grad text-white"><Scale size={26} /></div>
-          <div><div className="font-display text-xl font-bold text-text-hi">Diritto penale</div><div className="text-sm text-text-soft">Parte generale e speciale</div></div>
-          <Check size={22} className="ml-auto text-glow" />
+        <h1 className="font-display text-3xl font-bold text-text-hi">Quale materia prepari?</h1>
+        <p className="mt-2 text-text-soft">Ogni materia è una costellazione a sé: piano, stelle e progressi restano separati.</p>
+        <div className="mt-6">
+          <SubjectCards value={subj.id} onPick={(id) => {
+            if (id === subj.id) return;
+            try {
+              sessionStorage.setItem("sirio_onb_draft", JSON.stringify({
+                subject: id, step: 2,
+                patch: { name: p.name, mode: p.mode, examDate: p.examDate, hoursPerDay: p.hoursPerDay, goal: p.goal },
+              }));
+            } catch {}
+            performSubjectSwitch(id);
+          }} />
         </div>
         <p className="mt-4 text-sm text-text-mute">Presto: Diritto civile, costituzionale, amministrativo…</p>
       </div>
     );
+  }
 
   if (stepKey === "partenza")
     return (
@@ -326,7 +351,9 @@ function StepBody({ stepKey, p, set }) {
         )}
         {p.bookId === "nolibro" && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mt-4 rounded-xl2 glass-brand p-4 text-sm">
-            <b className="text-glow">Consiglio dell'editore:</b> <span className="text-text">per il tuo profilo, parti dal <b>SuperCompendio di Diritto penale</b> di Neldiritto Editore — sintetico e completo, ideale nel tuo tempo a disposizione.</span>
+            <b className="text-glow">Consiglio dell'editore:</b> <span className="text-text">{currentSubjectId() === "tributario"
+              ? <>per il tuo corso, il riferimento è il <b>Manuale di diritto tributario di Loconte</b> (CEDAM): è il testo su cui è costruito il programma.</>
+              : <>per il tuo profilo, parti dal <b>Compendio di Diritto penale</b> di Neldiritto Editore — completo e aggiornato, con il manuale Marinucci·Dolcini·Gatta come riferimento.</>}</span>
           </motion.div>
         )}
       </div>

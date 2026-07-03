@@ -2,7 +2,9 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ChevronRight, BookOpen, Target } from "lucide-react";
-import { CHAPTERS, topicsByChapter } from "../data/curriculum.js";
+import { CHAPTERS, PARTS, topicsByChapter } from "../data/curriculum.js";
+import { currentSubject } from "../lib/subject.js";
+const SUBJ = currentSubject();
 import { useSelectors } from "../lib/store.jsx";
 import { Card, Pill, Progress, Reveal, Modal, Ring, Button } from "../components/ui.jsx";
 import { PageHeader, Certified } from "./common.jsx";
@@ -49,18 +51,20 @@ export default function Topics() {
   return (
     <div>
       <PageHeader eyebrow="Il programma completo" title="Argomenti" helpKey="argomenti"
-        sub="Tutto l'indice del SuperCompendio di Diritto penale, navigabile. Tieni premuta una card per l'anteprima."
+        sub={`Tutto l'indice di ${SUBJ.nome}, dal compendio dell'editore. Tieni premuta una card per l'anteprima.`}
         right={<Certified />} />
 
-      <div className="mb-6 inline-flex rounded-full glass p-1">
-        {[["generale", "Parte generale"], ["speciale", "Parte speciale"]].map(([k, l]) => (
-          <button key={k} onClick={() => setPart(k)}
-            className={cn("relative rounded-full px-5 py-2 text-sm font-semibold transition", part === k ? "text-white" : "text-text-soft hover:text-text-hi")}>
-            {part === k && <motion.span layoutId="topicspart" className="absolute inset-0 rounded-full bg-brand-grad" transition={{ type: "spring", stiffness: 420, damping: 34 }} />}
-            <span className="relative z-10">{l}</span>
-          </button>
-        ))}
-      </div>
+      {PARTS.length > 1 && (
+        <div className="mb-6 inline-flex rounded-full glass p-1">
+          {PARTS.map(({ key: k, label: l }) => (
+            <button key={k} onClick={() => setPart(k)}
+              className={cn("relative rounded-full px-5 py-2 text-sm font-semibold transition", part === k ? "text-white" : "text-text-soft hover:text-text-hi")}>
+              {part === k && <motion.span layoutId="topicspart" className="absolute inset-0 rounded-full bg-brand-grad" transition={{ type: "spring", stiffness: 420, damping: 34 }} />}
+              <span className="relative z-10">{l}</span>
+            </button>
+          ))}
+        </div>
+      )}
 
       <div className="space-y-8">
         {chapters.map((ch) => {

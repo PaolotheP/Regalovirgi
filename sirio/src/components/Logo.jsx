@@ -36,8 +36,11 @@ export function Logo({ size = 36, showText = true, className }) {
       <LogoMark size={size} />
       {showText && (
         <div className="leading-none">
-          <div className="font-display text-xl font-bold tracking-tight text-text-hi">
+          <div className="flex items-center gap-1.5 font-display text-xl font-bold tracking-tight text-text-hi">
             Sirio
+            {/* etichetta beta: discreta ma sempre visibile (lettera greca β) */}
+            <span title="Versione beta: il tuo feedback conta"
+              className="rounded-full border border-glow/30 bg-glow/10 px-1.5 py-px font-sans text-[0.6rem] font-bold leading-none text-glow">β</span>
           </div>
           <div className="mt-0.5 text-[0.56rem] font-sans font-semibold uppercase tracking-[0.22em] text-text-mute">Neldiritto</div>
         </div>

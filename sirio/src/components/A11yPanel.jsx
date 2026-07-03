@@ -1,8 +1,10 @@
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { PersonStanding, Volume2, Mic, Type, Waves, WifiOff } from "lucide-react";
+import { PersonStanding, Volume2, Mic, Type, Waves, WifiOff, RotateCcw, AlertTriangle } from "lucide-react";
 import { useStore } from "../lib/store.jsx";
-import { Modal, Pill } from "./ui.jsx";
+import { Modal, Pill, toast } from "./ui.jsx";
 import { voiceSupported } from "../lib/hooks.js";
+import { currentSubject } from "../lib/subject.js";
 import { cn } from "../lib/utils.js";
 
 function Toggle({ on, onChange, disabled }) {
@@ -27,6 +29,61 @@ const OPTIONS = [
     desc: "Transizioni essenziali e nessun movimento decorativo, per chi soffre il motion o vuole massima sobrietà." },
 ];
 
+/* Azzeramento dati della materia corrente, con conferma esplicita (beta) */
+function ResetSection({ onClose }) {
+  const { dispatch } = useStore();
+  const [arming, setArming] = useState(false);
+  useEffect(() => {
+    if (!arming) return;
+    const t = setTimeout(() => setArming(false), 6000);
+    return () => clearTimeout(t);
+  }, [arming]);
+  const subj = currentSubject();
+
+  const doReset = () => {
+    try { localStorage.removeItem(subj.storageKey); } catch {}
+    dispatch({ type: "RESET" });
+    toast("Dati azzerati: si riparte da capo");
+    onClose?.();
+    try { window.location.hash = "#/"; setTimeout(() => window.location.reload(), 250); } catch {}
+  };
+
+  return (
+    <div className={cn("mt-4 rounded-xl2 border p-3.5 transition", arming ? "border-rose-400/45 bg-rose-400/10" : "border-line/10 bg-fill/[0.03]")}>
+      <div className="flex items-start gap-3">
+        {arming ? <AlertTriangle size={17} className="mt-0.5 shrink-0 text-rose-500" /> : <RotateCcw size={17} className="mt-0.5 shrink-0 text-text-mute" />}
+        <div className="min-w-0 flex-1">
+          <div className="text-sm font-semibold text-text-hi">{arming ? "Confermi davvero?" : "Ricomincia da capo"}</div>
+          <p className="mt-0.5 text-xs leading-relaxed text-text-soft">
+            {arming
+              ? <>Verranno cancellati <b className="text-text-hi">solo</b> i dati di <b className="text-text-hi">{subj.nome}</b> su questo dispositivo: piano, stelle, quiz, diario. L'altra materia non viene toccata. Non si può annullare.</>
+              : <>Azzera i progressi di {subj.nome} su questo dispositivo e rifai l'onboarding. Utile in fase di prova.</>}
+          </p>
+          <div className="mt-2 flex gap-2">
+            {!arming ? (
+              <button onClick={() => setArming(true)}
+                className="rounded-full border border-line/20 px-3 py-1.5 text-xs font-semibold text-text-soft transition hover:border-rose-400/50 hover:text-rose-500">
+                Azzera i miei dati…
+              </button>
+            ) : (
+              <>
+                <button onClick={doReset}
+                  className="rounded-full bg-rose-500 px-3 py-1.5 text-xs font-bold text-white transition hover:bg-rose-600">
+                  Sì, azzera tutto
+                </button>
+                <button onClick={() => setArming(false)}
+                  className="rounded-full border border-line/20 px-3 py-1.5 text-xs font-semibold text-text-soft transition hover:text-text-hi">
+                  Annulla
+                </button>
+              </>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function A11yPanel({ open, onClose }) {
   const { state, dispatch } = useStore();
   return (
@@ -34,7 +91,7 @@ export default function A11yPanel({ open, onClose }) {
       <div className="flex items-center gap-3">
         <div className="grid h-11 w-11 place-items-center rounded-xl bg-glow/12 text-glow"><PersonStanding size={22} /></div>
         <div>
-          <h3 className="font-display text-xl font-bold text-text-hi">Accessibilità</h3>
+          <h3 className="font-display text-xl font-bold text-text-hi">Accessibilità e impostazioni</h3>
           <p className="text-sm text-text-soft">Sirio si adatta a te, non il contrario.</p>
         </div>
       </div>
@@ -64,6 +121,8 @@ export default function A11yPanel({ open, onClose }) {
           browser: puoi studiare in treno o con connessione instabile, a basso consumo di dati.
         </p>
       </div>
+
+      <ResetSection onClose={onClose} />
     </Modal>
   );
 }

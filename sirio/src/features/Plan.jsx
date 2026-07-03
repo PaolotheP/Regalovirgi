@@ -19,23 +19,22 @@ export default function Plan() {
   const nav = useNavigate();
   const plan = state.plan;
   const [view, setView] = useState("timeline");
-  if (!plan) return <div><PageHeader title="Piano di studi" /><Card className="p-8 text-center"><p className="text-text-soft">Completa l'onboarding per generare il piano.</p><Button className="mt-4" onClick={() => nav("/onboarding")}>Crea il piano</Button></Card></div>;
 
-  const book = getBook(plan.bookId);
-  const gg = plan.examDate ? Math.max(0, daysBetween(today(), parseDate(plan.examDate))) : plan.horizonDays;
+  /* NB: tutti gli hook PRIMA di qualsiasi return condizionale (regole degli
+     hook di React: un ordine variabile tra render fa perdere il primo click). */
   const todayISO = toISO(today());
 
   /* --- GIORNI dallo schedule --- */
   const days = useMemo(() => {
     const map = new Map();
-    plan.schedule.forEach((s) => {
+    (plan?.schedule || []).forEach((s) => {
       if (!map.has(s.date)) map.set(s.date, { date: s.date, topics: [], special: null });
       const d = map.get(s.date);
       if (s.kind === "studio" && s.topicId) d.topics.push(s.topicId);
       else if (!d.special) d.special = { kind: s.kind, label: s.label };
     });
     return [...map.values()].sort((a, b) => (a.date < b.date ? -1 : 1));
-  }, [plan.schedule]);
+  }, [plan?.schedule]);
 
   const dayFill = (d) => {
     if (d.topics.length) return Math.round(d.topics.reduce((n, id) => n + sel.mastery(id), 0) / d.topics.length);
@@ -62,6 +61,10 @@ export default function Plan() {
     return { text, topic: t };
   }), [state.todo]);
 
+  if (!plan) return <div><PageHeader title="Piano di studi" /><Card className="p-8 text-center"><p className="text-text-soft">Completa l'onboarding per generare il piano.</p><Button className="mt-4" onClick={() => nav("/onboarding")}>Crea il piano</Button></Card></div>;
+
+  const book = getBook(plan.bookId);
+  const gg = plan.examDate ? Math.max(0, daysBetween(today(), parseDate(plan.examDate))) : plan.horizonDays;
   const studiedDays = days.filter((d) => d.topics.length).length;
   const doneDays = days.filter((d) => d.topics.length && dayFill(d) >= 60).length;
 

@@ -1,0 +1,302 @@
+/* =========================================================================
+   SIRIO — DIRITTO PENALE · Capitolo 7: Le cause di giustificazione.
+   Fonte: Marinucci·Dolcini·Gatta, Parte generale — Le cause di
+   giustificazione del reato (nozione e disciplina, consenso dell'avente
+   diritto, esercizio del diritto e adempimento del dovere, legittima
+   difesa anche domiciliare, uso legittimo delle armi, stato di necessità,
+   scriminanti tacite).
+   ========================================================================= */
+
+export const PEN_CAP7 = [
+  /* ===================== 1 · LE SCRIMINANTI IN GENERALE, ARTT. 50 E 51 ==================== */
+  {
+    id: "scriminanti",
+    part: "generale",
+    chapter: 7,
+    chapterTitle: "Le cause di giustificazione",
+    title: "Le cause di giustificazione: disciplina generale, consenso, esercizio del diritto e adempimento del dovere",
+    subtitle: "Rilevanza oggettiva (art. 59), scriminanti putative, eccesso colposo (art. 55), artt. 50 e 51 c.p., scriminanti tacite",
+    articoli: ["art. 50 c.p.", "art. 51 c.p.", "art. 55 c.p.", "art. 59 c.p.", "art. 5 c.c."],
+    pages: [124, 151],
+    depth: "deep",
+    layers: {
+      essenziale:
+        "Le cause di giustificazione (c.d. <strong>scriminanti</strong>) sono situazioni che rendono <strong>lecito</strong> un fatto conforme a una fattispecie incriminatrice, perché imposto o consentito dalla legge. Rientrano nelle «cause di esclusione della pena» ex art. 59 co. 1 c.p. e comprendono le scriminanti comuni (artt. 50-54 c.p.) e quelle speciali (es. art. 393-bis c.p.). Il fondamento è ricondotto o a un unico <strong>bilanciamento di interessi</strong> (modello monistico) o, per l'opinione prevalente, a principi distinti (impostazione pluralistica): l'<em>interesse prevalente</em> per esercizio del diritto, adempimento del dovere, legittima difesa, uso legittimo delle armi e stato di necessità; l'<em>interesse mancante</em> per il consenso dell'avente diritto. Sul piano logico obbediscono al <strong>principio di non contraddizione</strong>: l'ordinamento non può insieme consentire e vietare la stessa condotta. La loro efficacia è <strong>universale</strong>: escludono ogni responsabilità (penale, civile, amministrativa, disciplinare). La disciplina generale poggia su due regole: la <strong>rilevanza oggettiva</strong> (art. 59 co. 1: operano anche se ignorate dall'agente) e la rilevanza del <strong>putativo</strong> (art. 59 co. 4: la scriminante erroneamente supposta esclude il dolo, salva la responsabilità colposa se l'errore è dovuto a colpa e il fatto è previsto come delitto colposo). Completa il quadro l'<strong>eccesso colposo</strong> (art. 55 c.p.): chi agisce in presenza dei presupposti di una scriminante ma ne travalica colposamente i limiti risponde a titolo di colpa. Tra le scriminanti codificate, l'art. 50 c.p. rende non punibile chi lede un diritto <strong>col consenso di chi può validamente disporne</strong>; l'art. 51 c.p. scrimina il fatto commesso nell'<strong>esercizio di un diritto</strong> o nell'<strong>adempimento di un dovere</strong> imposto da una norma giuridica o da un ordine legittimo dell'Autorità.",
+      approfondimenti: [
+        { label: "Scriminanti, scusanti e cause di non punibilità", body: "Il codice parla genericamente di «cause di esclusione della pena», ma la categoria è eterogenea. Le <strong>scriminanti</strong> operano oggettivamente e rendono lecito il fatto; le <strong>scusanti</strong> escludono la colpevolezza per <em>inesigibilità</em> di una condotta diversa e richiedono che l'agente ne conosca la ricorrenza; le <strong>cause di non punibilità in senso stretto</strong> lasciano intatto un fatto tipico, antigiuridico e colpevole, escludendo la pena per ragioni di opportunità politico-criminale. Ne discendono regimi diversi: l'analogia in bonam partem è pacifica per le scriminanti ed esclusa per le cause di non punibilità (norme eccezionali ex art. 14 preleggi); solo le scriminanti escludono la responsabilità dei concorrenti ex art. 119 co. 2 c.p. e, di regola, quella civile; la formula assolutoria è «il fatto non costituisce reato» per scriminanti e scusanti, «l'autore non è punibile» per le cause di non punibilità." },
+        { label: "L'eccesso colposo (art. 55 c.p.)", body: "Richiede: presenza di <strong>tutti i presupposti</strong> della scriminante, travalicamento dei suoi limiti, colpa nel travalicamento, previsione del fatto come delitto colposo. Due forme: <strong>eccesso nel fine</strong> (errore-motivo: l'agente ritiene necessario un comportamento che eccede la scriminante e vuole l'evento più grave) ed <strong>eccesso nei mezzi</strong> (errore-inabilità: valuta bene la situazione ma per inabilità o concitazione non contiene la condotta). La tesi maggioritaria lo ascrive alla c.d. <strong>colpa impropria</strong> e reputa il reato strutturalmente colposo. Si differenzia dalla scriminante putativa perché lì i presupposti esistono solo in apparenza, qui esistono realmente ma se ne superano i limiti. L'istituto, pur riferito agli artt. 51-54, è ritenuto applicabile a ogni scriminante." },
+        { label: "Il consenso dell'avente diritto (art. 50 c.p.)", body: "Fondamento prevalente: <strong>rinuncia del titolare</strong> alla tutela del bene (prevalenza dell'autodeterminazione). Il consenso deve provenire dal titolare del diritto dotato di capacità naturale ed essere <strong>attuale, libero, lecito, consapevole, specifico</strong>; ammette qualsiasi forma (anche tacita) e può essere condizionato. Non opera per i reati in cui il consenso/dissenso è elemento del fatto tipico (es. art. 614 c.p.) né per i <strong>diritti indisponibili</strong>: interessi pubblici, beni della collettività, diritto alla vita (artt. 579-580 c.p.). Sono disponibili i diritti patrimoniali, la libertà sessuale, i segreti privati; l'integrità fisica lo è nei limiti dell'art. 5 c.c. Il consenso <strong>presunto</strong> (il titolare non ha consentito, ma avrebbe consentito) è per l'indirizzo tradizionale irrilevante, ex art. 59 co. 1 c.p." },
+        { label: "Art. 51 c.p.: esercizio del diritto e adempimento del dovere", body: "Il «diritto» comprende oggi ogni situazione soggettiva attiva (facoltà, potestà; discussi gli interessi legittimi) e può derivare da Costituzione, legge, regolamenti, consuetudine, provvedimenti e contratti. Incontra <strong>limiti interni</strong> (es. divieto di farsi giustizia da sé, artt. 392-393 c.p.) ed <strong>esterni</strong> (es. artt. 572 e 368 c.p.). Il dovere nasce da una norma giuridica o da un <strong>ordine legittimo</strong> dell'Autorità, che esige legittimità formale (competenza, soggezione, forme) e sostanziale. Dell'ordine illegittimo risponde sempre il superiore e di regola anche l'esecutore, salvo errore di fatto sulla legittimità o ordine insindacabile; l'insindacabilità cede però davanti alla <strong>manifesta criminosità</strong> dell'ordine, che il militare ha il dovere di non eseguire." },
+      ],
+      giurisprudenza: [
+        { label: "Diritto di cronaca, critica e satira", body: "Le Sezioni Unite (23 ottobre 1984, n. 8959, confermata da SU 30 maggio 2001, n. 37140) hanno fissato i limiti scriminanti del diritto di cronaca rispetto alla diffamazione: <strong>verità</strong> oggettiva della notizia, <strong>pertinenza</strong> (interesse pubblico, cfr. Cass. n. 41013/2021) e <strong>continenza</strong>, valutata secondo la percezione del «lettore medio» (Cass. n. 503/2022). Per l'orientamento maggioritario (Cass. n. 36407/2023) la scriminante copre solo i reati commessi <em>con</em> la pubblicazione, non quelli commessi per <em>procacciarsi</em> la notizia. Nella critica il limite della verità è compresso, ma il fatto di partenza non può essere manipolato (Cass. n. 6920/2022); la satira, pur paradossale, non può fondarsi su dati storicamente falsi (Cass. n. 12101/2023)." },
+        { label: "Scriminante putativa: onere di allegazione", body: "Cass., Sez. II, 1° febbraio 2023, n. 22903, in tema di applicazione putativa dell'art. 393-bis c.p., ha chiarito che l'errore sul fatto non può basarsi su un criterio meramente soggettivo: occorrono <strong>dati fattuali concreti</strong> — che l'imputato ha l'onere di allegare — idonei a giustificare, in una valutazione <em>ex ante</em>, l'erroneo convincimento di trovarsi nella situazione scriminata." },
+        { label: "Analogia e scusanti; reati culturalmente orientati", body: "Cass., Sez. Un., 16 marzo 2021, n. 10381 ha ammesso l'interpretazione analogica delle <strong>scusanti</strong>, questione controversa in dottrina. Quanto ai reati culturalmente orientati, la giurisprudenza (teoria dello sbarramento invalicabile) esclude che la diversità culturale possa fondare una scriminante quando siano lesi beni fondamentali costituzionalmente presidiati; la motivazione culturale può rilevare solo nella commisurazione della pena ex art. 133 c.p. (Cass. n. 26153/2011)." },
+      ],
+      eccezioni: [
+        { label: "Errore sull'esistenza della scriminante: art. 5, non art. 59", body: "L'art. 59 co. 4 c.p. scusa solo l'errore sui <strong>presupposti di fatto</strong> di una scriminante realmente prevista dall'ordinamento (o su norma extrapenale non integratrice). Chi ritiene esistente una causa di giustificazione che l'ordinamento <em>non prevede</em> versa in errore sul precetto: si applica l'art. 5 c.p. e l'errore, salva l'ignoranza inevitabile, non scusa. Errore da evitare: trattare ogni convinzione di liceità come scriminante putativa." },
+        { label: "Scriminanti tacite: sport, attività medica, offendicula", body: "L'ammissibilità di scriminanti non codificate è controversa (analogia in bonam partem, azione socialmente adeguata, riconduzione alle ipotesi codificate). Per l'attività sportiva violenta la giurisprudenza (Cass. n. 7768/2012) invoca una scriminante non codificata nei limiti del <strong>rischio consentito</strong>; Cass. n. 8609/2022 richiede comunque l'ordinario accertamento di fatto e colpevolezza. Per l'attività medica, SU 21 gennaio 2009, n. 2437: il trattamento arbitrario con <strong>esito fausto</strong> ed eseguito secondo le leges artis non integra reato; il consenso informato non è una scriminante ma un presupposto di liceità (Cass. n. 2347/2013). Gli <strong>offendicula</strong> sono leciti se proporzionati e riconoscibili." },
+      ],
+    },
+    sintesi: [
+      "Le scriminanti rendono lecito il fatto tipico: efficacia universale in tutto l'ordinamento.",
+      "Fondamento: interesse prevalente o mancante; principio di non contraddizione.",
+      "Art. 59 co. 1: rilevanza oggettiva, operano anche se ignorate dall'agente.",
+      "Art. 59 co. 4: scriminante putativa esclude il dolo; residua la colpa.",
+      "Art. 55: eccesso colposo nel fine o nei mezzi, punito a titolo di colpa.",
+      "Art. 50: consenso del titolare, solo per diritti disponibili; art. 51: diritto e dovere.",
+    ],
+    esempi: [
+      { titolo: "Consenso valido e consenso presunto", testo: "Giulia autorizza l'amico Davide, tatuatore, a inciderle un piccolo tatuaggio sul braccio: la lesione dell'integrità fisica è scriminata ex art. 50 c.p., perché il consenso proviene dalla titolare capace, è attuale, libero, consapevole e specifico, e l'atto di disposizione del corpo non viola i limiti dell'art. 5 c.c. Diverso il caso in cui Davide, sapendo che la vicina Elena è in vacanza, entri in casa sua e venda un suo mobile convinto che lei «avrebbe certamente acconsentito»: qui non c'è consenso, ma solo consenso <strong>presunto</strong>, che per l'indirizzo tradizionale non scrimina, perché l'art. 59 co. 1 c.p. richiede l'esistenza obiettiva della causa di giustificazione. Se invece Davide avesse ragionevolmente creduto, per un equivoco su un messaggio di Elena, che il consenso fosse stato davvero prestato, opererebbe la scriminante putativa ex art. 59 co. 4 c.p." },
+      { titolo: "Eccesso colposo nei mezzi", testo: "Il maresciallo Fabbri sorprende un rapinatore che minaccia un passante e, trovandosi nei presupposti di una reazione legittima, decide correttamente che è sufficiente puntare l'arma per bloccarlo. Nella concitazione, però, maneggia maldestramente la pistola e parte un colpo che ferisce gravemente l'aggressore. Tutti i presupposti della scriminante esistevano, ma i suoi limiti sono stati travalicati per <strong>errore-inabilità</strong>: è il c.d. eccesso colposo nei mezzi ex art. 55 c.p., e Fabbri risponderà di lesioni colpose, essendo il fatto previsto come delitto colposo. Se invece avesse ritenuto per un errore di valutazione che fosse necessario sparare, mentre bastava minacciare, si tratterebbe di eccesso nel fine (errore-motivo): l'evento più grave è voluto, ma il rimprovero resta a titolo di colpa (c.d. colpa impropria)." },
+    ],
+    flashcards: [
+      ["Cosa sono le cause di giustificazione?", "Situazioni che rendono penalmente lecito un fatto conforme a una fattispecie incriminatrice, perché imposto o consentito dalla legge; escludono l'antigiuridicità con efficacia universale."],
+      ["Cosa prevede l'art. 59 co. 1 c.p.?", "La rilevanza oggettiva delle scriminanti: sono valutate a favore dell'agente anche se da lui non conosciute o ritenute per errore inesistenti."],
+      ["Come opera la scriminante putativa (art. 59 co. 4)?", "L'erronea supposizione incolpevole della scriminante esclude il dolo; se l'errore è colposo, l'agente risponde a titolo di colpa se il fatto è previsto come delitto colposo."],
+      ["Quali sono le condizioni dell'eccesso colposo ex art. 55 c.p.?", "Presenza di tutti i presupposti della scriminante, travalicamento colposo dei suoi limiti e previsione del fatto come delitto colposo; forme: eccesso nel fine e nei mezzi."],
+      ["Quali requisiti deve avere il consenso ex art. 50 c.p.?", "Deve provenire dal titolare capace ed essere attuale, libero, lecito, consapevole e specifico; forma libera. Vale solo per diritti disponibili."],
+      ["Quando l'esecutore di un ordine illegittimo non risponde del reato?", "Se versa in errore di fatto sulla legittimità dell'ordine o se l'ordine è insindacabile; l'insindacabilità cede però davanti alla manifesta criminosità dell'ordine."],
+    ],
+    comparativa: {
+      titolo: "Scriminanti vs scusanti vs cause di non punibilità",
+      a: "Scriminanti",
+      b: "Scusanti / cause di non punibilità",
+      righe: [
+        { profilo: "Effetto sul fatto", a: "Rendono lecito il fatto in tutto l'ordinamento", b: "Scusanti: escludono la colpevolezza; cause di non punibilità: solo la pena" },
+        { profilo: "Operatività", a: "Oggettiva (art. 59 co. 1), anche se ignorate", b: "Scusanti: soggettiva, serve la conoscenza; non punibilità: oggettiva ma senza rilievo del putativo" },
+        { profilo: "Concorrenti (art. 119 c.p.)", a: "Responsabilità esclusa per tutti: il fatto è lecito", b: "Il concorrente resta punibile: il fatto conserva tipicità e antigiuridicità" },
+        { profilo: "Responsabilità civile e formula", a: "Esclusa (salvo indennizzo ex art. 2045 c.c.); «il fatto non costituisce reato»", b: "Non punibilità: la responsabilità civile resta; «l'autore non è punibile»" },
+      ],
+    },
+    quiz: [
+      {
+        q: "Ai sensi dell'art. 59 co. 1 c.p., le cause di giustificazione:",
+        opts: ["Operano solo se l'agente le conosce al momento del fatto", "Sono valutate a favore dell'agente anche se da lui non conosciute", "Rilevano solo se invocate dalla difesa nel processo", "Operano solo se l'agente agisce allo scopo di avvalersene"],
+        correct: 1,
+        difficulty: 1,
+        commonError: "Ritenere necessario un elemento soggettivo di conoscenza della scriminante, confondendo il regime delle scriminanti con quello delle scusanti.",
+        why: "Il giudizio di antigiuridicità è puramente oggettivo: la concreta sussistenza della scriminante esclude la rilevanza penale del fatto a prescindere dalla conoscenza dei suoi presupposti da parte dell'agente. La conoscenza è invece necessaria per le scusanti.",
+        fonte: "Marinucci·Dolcini·Gatta, PG — Le cause di giustificazione",
+      },
+      {
+        q: "Chi commette un fatto ritenendo per errore incolpevole di agire in presenza di una scriminante prevista dall'ordinamento:",
+        opts: ["Risponde comunque a titolo di dolo, perché il fatto resta antigiuridico", "Non risponde, perché il fatto diviene oggettivamente lecito", "Non risponde a titolo di dolo, per effetto dell'art. 59 co. 4 c.p.", "Risponde sempre a titolo di colpa, quale che sia il reato"],
+        correct: 2,
+        difficulty: 3,
+        commonError: "Credere che la scriminante putativa renda lecito il fatto: in realtà il fatto resta antigiuridico e viene meno solo la colpevolezza dolosa.",
+        why: "L'art. 59 co. 4 c.p. equipara la supposizione incolpevole della scriminante alla sua esistenza: il dolo è escluso perché l'agente si rappresenta un fatto diverso da quello costituente reato. Se l'errore è dovuto a colpa, residua la responsabilità colposa ove il fatto sia previsto come delitto colposo.",
+        fonte: "Marinucci·Dolcini·Gatta, PG — Le cause di giustificazione",
+      },
+      {
+        q: "L'eccesso colposo ex art. 55 c.p. si distingue dalla scriminante putativa perché:",
+        opts: ["Nell'eccesso i presupposti della scriminante esistono realmente, ma se ne travalicano i limiti", "Nell'eccesso i presupposti della scriminante esistono solo in apparenza", "L'eccesso riguarda solo la legittima difesa domiciliare", "L'eccesso presuppone sempre la volontà dell'evento più grave"],
+        correct: 0,
+        difficulty: 3,
+        commonError: "Invertire i due istituti: è la scriminante putativa, non l'eccesso, a caratterizzarsi per presupposti solo apparenti.",
+        why: "Nell'eccesso colposo l'agente si trova effettivamente nei presupposti di una causa di giustificazione, ma per colpa ne supera i limiti (nel fine o nei mezzi); nella scriminante putativa la situazione giustificante esiste solo nell'erronea rappresentazione dell'agente. L'evento più grave è voluto solo nell'eccesso nel fine.",
+        fonte: "Marinucci·Dolcini·Gatta, PG — L'eccesso colposo",
+      },
+      {
+        q: "Quale dei seguenti diritti NON può essere validamente oggetto di consenso scriminante ex art. 50 c.p.?",
+        opts: ["I diritti patrimoniali", "Il diritto alla vita", "La libertà sessuale", "L'inviolabilità dei segreti privati"],
+        correct: 1,
+        difficulty: 2,
+        commonError: "Ritenere disponibile ogni diritto individuale: la vita è indisponibile, come dimostrano gli artt. 579 e 580 c.p.",
+        why: "Il consenso opera solo per i diritti disponibili: patrimoniali, libertà sessuale, segreti privati (l'integrità fisica nei limiti dell'art. 5 c.c.). Il diritto alla vita è indisponibile, tanto che l'ordinamento punisce l'omicidio del consenziente e l'istigazione o aiuto al suicidio.",
+        fonte: "Marinucci·Dolcini·Gatta, PG — Il consenso dell'avente diritto",
+      },
+      {
+        q: "Secondo le Sezioni Unite del 1984, il diritto di cronaca scrimina la diffamazione se ricorrono:",
+        opts: ["Verità della notizia, attualità e forma scritta della pubblicazione", "Pertinenza, continenza e consenso dell'interessato", "Verità oggettiva, pertinenza e continenza", "Verità putativa, rilevanza politica e buona fede del giornalista"],
+        correct: 2,
+        difficulty: 2,
+        commonError: "Aggiungere requisiti inesistenti (consenso dell'interessato, forma scritta) o dimenticare la continenza espressiva.",
+        why: "SU n. 8959/1984 (confermata da SU n. 37140/2001) richiede la verità oggettiva della notizia, la pertinenza (interesse dell'opinione pubblica) e la continenza (correttezza espositiva). Se la notizia si rivela falsa nonostante il diligente controllo delle fonti, opera la scriminante putativa ex art. 59 co. 4 c.p.",
+        fonte: "Marinucci·Dolcini·Gatta, PG — L'esercizio del diritto",
+      },
+      {
+        q: "In tema di ordine illegittimo dell'Autorità, la manifesta criminosità dell'ordine comporta che:",
+        opts: ["L'esecutore risponde solo se ha agito con dolo intenzionale", "Il militare ha il dovere di non eseguirlo e di informare i superiori", "L'ordine resta insindacabile ma la pena è attenuata", "Risponde soltanto il superiore che ha emanato l'ordine"],
+        correct: 1,
+        difficulty: 4,
+        commonError: "Credere che l'insindacabilità dell'ordine copra anche gli ordini manifestamente criminosi, escludendo la responsabilità dell'esecutore.",
+        why: "La manifesta criminosità è un limite all'insindacabilità: l'art. 1349 co. 2 del codice dell'ordinamento militare impone di non eseguire l'ordine e di informare al più presto i superiori. Chi esegue un ordine manifestamente criminoso risponde quindi in concorso con il superiore.",
+        fonte: "Marinucci·Dolcini·Gatta, PG — L'adempimento del dovere",
+      },
+      {
+        q: "Secondo le Sezioni Unite n. 2437/2009, il trattamento medico-chirurgico eseguito senza consenso, secondo le leges artis e con esito fausto:",
+        opts: ["Integra lesioni volontarie, scriminabili solo ex art. 54 c.p.", "Integra violenza privata ex art. 610 c.p.", "Integra omicidio preterintenzionale in caso di complicanze", "Non integra alcun fatto penalmente rilevante"],
+        correct: 3,
+        difficulty: 4,
+        commonError: "Ritenere che la sola mancanza di consenso fondi la responsabilità penale del medico, secondo l'indirizzo più risalente ormai superato.",
+        why: "Se l'intervento riesce non è ravvisabile alcuna malattia rilevante ex art. 582 c.p., né violenza privata. Il consenso informato resta presupposto di liceità del trattamento, ma la sua mancanza, in assenza di menomazione, produce solo conseguenze risarcitorie e disciplinari.",
+        fonte: "Marinucci·Dolcini·Gatta, PG — Le scriminanti tacite",
+      },
+    ],
+    veroFalso: [
+      { aff: "La presenza di una scriminante esclude la responsabilità penale ma lascia sempre ferma quella civile.", vero: false, traccia: "Falso. Le cause di giustificazione hanno efficacia universale: rendono il fatto lecito in tutto l'ordinamento, escludendo anche la responsabilità civile, amministrativa e disciplinare. Fa eccezione l'obbligazione indennitaria espressamente prevista, come quella ex art. 2045 c.c. per lo stato di necessità." },
+      { aff: "Chi concorre in un fatto coperto da una causa di giustificazione non è punibile ex art. 119 co. 2 c.p.", vero: true, traccia: "Vero. Poiché la scriminante rende il fatto lecito in toto, va esclusa la responsabilità concorsuale di chi partecipa alla sua realizzazione plurisoggettiva; diversamente, per le cause di non punibilità in senso stretto il concorrente può rispondere, perché il fatto conserva tipicità e antigiuridicità." },
+      { aff: "Il consenso presuppone sempre la forma scritta per avere efficacia scriminante ex art. 50 c.p.", vero: false, traccia: "Falso. Il consenso può essere manifestato in qualsiasi forma, espressa o tacita, e può essere sottoposto a condizioni, termini o limitazioni. Ciò che conta è che provenga dal titolare capace e sia attuale, libero, lecito, consapevole e specifico." },
+    ],
+    aperta: {
+      q: "Il candidato illustri la disciplina generale delle cause di giustificazione, soffermandosi sulla rilevanza oggettiva, sulle scriminanti putative e sull'eccesso colposo.",
+      traccia: "Le cause di giustificazione rendono lecito, in tutto l'ordinamento, un fatto conforme a una fattispecie incriminatrice, perché imposto o consentito dalla legge; il fondamento è ricondotto al bilanciamento di interessi (interesse prevalente o mancante) e al principio di non contraddizione. La disciplina generale poggia sull'art. 59 c.p.: il comma 1 ne sancisce la rilevanza oggettiva, operando esse anche se ignorate dall'agente o ritenute per errore inesistenti; il comma 4 dà rilievo alla scriminante putativa, equiparando la supposizione erronea incolpevole all'effettiva esistenza della scriminante. L'errore deve però cadere sui presupposti di fatto di una scriminante realmente prevista: l'errore sull'esistenza di una scriminante immaginaria ricade nell'art. 5 c.p. La scriminante putativa esclude il dolo, ma se l'errore è colposo residua la responsabilità per delitto colposo. L'art. 55 c.p. disciplina infine l'eccesso colposo: presenti tutti i presupposti della scriminante, il colposo travalicamento dei suoi limiti — nel fine (errore-motivo) o nei mezzi (errore-inabilità) — comporta responsabilità a titolo di colpa, secondo la figura della colpa impropria.",
+      fonte: "Marinucci·Dolcini·Gatta, PG — Le cause di giustificazione",
+    },
+    consigliate: ["mappa", "comparativa", "flashcards", "mcq", "aperta"],
+    media: {
+      podcast: {
+        title: "Le scriminanti: disciplina generale, consenso e art. 51",
+        chapters: [["Nozione, fondamento ed effetti", 0], ["Art. 59: rilevanza oggettiva e putativo; art. 55", 280], ["Consenso dell'avente diritto", 600], ["Esercizio del diritto, adempimento del dovere e scriminanti tacite", 880]],
+      },
+      mappa: true,
+    },
+  },
+
+  /* ===================== 2 · LEGITTIMA DIFESA, USO DELLE ARMI, STATO DI NECESSITÀ ==================== */
+  {
+    id: "legittimaDifesa",
+    part: "generale",
+    chapter: 7,
+    chapterTitle: "Le cause di giustificazione",
+    title: "Legittima difesa, uso legittimo delle armi e stato di necessità",
+    subtitle: "Pericolo attuale e offesa ingiusta, proporzione, difesa domiciliare (art. 52 co. 2-4), art. 53, art. 54 e differenze",
+    articoli: ["art. 52 c.p.", "art. 53 c.p.", "art. 54 c.p.", "art. 55 co. 2 c.p.", "art. 2045 c.c."],
+    pages: [135, 145],
+    depth: "deep",
+    layers: {
+      essenziale:
+        "L'art. 52 co. 1 c.p. scrimina chi ha commesso il fatto <strong>costretto dalla necessità di difendere un diritto proprio o altrui contro il pericolo attuale di un'offesa ingiusta</strong>, sempre che la difesa sia <strong>proporzionata</strong> all'offesa. La situazione aggressiva richiede una condotta umana (anche mediante animali o cose), un'offesa ingiusta (arrecata <em>non iure</em>, anche da soggetto non colpevole) a qualsiasi diritto, proprio o altrui (c.d. soccorso difensivo), e un pericolo <strong>attuale</strong> (imminente o persistente), non meramente ipotetico: non si può reagire a un pericolo esaurito né a uno futuro. La reazione deve essere <strong>necessaria</strong> — inevitabile altrimenti: il <em>commodus discessus</em>, la fuga priva di pericoli, esclude la scriminante — e proporzionata, con giudizio <em>ex ante</em> su tutte le circostanze concrete. La <strong>legittima difesa domiciliare</strong> (art. 52 co. 2-4, l. 59/2006 e l. 36/2019) introduce, in caso di violazione di domicilio o dei luoghi equiparati, una <strong>presunzione di proporzione</strong> a favore di chi, legittimamente presente, si difende con arma legittimamente detenuta: per la giurisprudenza la presunzione riguarda la sola proporzione, mentre necessità, attualità del pericolo e offesa ingiusta vanno sempre accertate. L'art. 53 c.p. (<strong>uso legittimo delle armi</strong>) è scriminante propria e sussidiaria del solo pubblico ufficiale che, per adempiere un dovere del proprio ufficio, sia costretto dalla necessità di respingere una violenza, vincere una resistenza (attiva) all'Autorità o impedire la consumazione di gravi delitti tassativamente elencati; un'interpretazione costituzionalmente orientata esige anche la proporzione. L'art. 54 c.p. (<strong>stato di necessità</strong>) scrimina chi agisce costretto dalla necessità di salvare sé o altri dal <strong>pericolo attuale di un danno grave alla persona</strong>, non volontariamente causato né altrimenti evitabile, con fatto proporzionato al pericolo: qui l'offesa cade su un terzo estraneo, rilevano solo i diritti personali e residua un'obbligazione indennitaria ex art. 2045 c.c.",
+      approfondimenti: [
+        { label: "La proporzione nell'art. 52: come si accerta", body: "Per una parte della dottrina (Marinucci·Dolcini·Gatta) la proporzione si accerta con una valutazione comparativa tra il bene dell'aggredito esposto a pericolo e il bene dell'aggressore sacrificato: non serve la prevalenza del bene difeso, ma l'assenza di un eccessivo divario. La tesi prevalente (c.d. valutazione dinamica) considera tutte le circostanze del caso: mezzi utilizzati, alternative disponibili, beni in conflitto, intensità dell'offesa, incolpevolezza dell'aggredito. Il giudizio è <em>ex ante</em>: si compara l'offesa arrecata all'aggressore non con quella effettivamente subita, ma con quella che l'aggredito poteva ragionevolmente temere — criterio che risolve il caso dell'arma giocattolo simulata." },
+        { label: "La difesa domiciliare: natura e presupposti", body: "Per la tesi maggioritaria l'art. 52 co. 2-3 è un'ipotesi <strong>speciale</strong> di legittima difesa qualificata dalla presunzione di proporzione (per altri, scriminante autonoma). Presupposti: violazione di domicilio o luogo di privata dimora ex art. 614 c.p. (compresi i luoghi di attività commerciale, professionale o imprenditoriale); legittima presenza dell'aggredito; difesa con <strong>arma legittimamente detenuta</strong> o altro mezzo idoneo; scopo di tutelare l'incolumità propria o altrui, ovvero i beni, ma in tal caso solo se non vi è desistenza e vi è <strong>pericolo di aggressione</strong>, riferito all'incolumità fisica: nessuna «licenza di uccidere» a difesa del solo patrimonio. Il co. 4 (l. 36/2019) considera «sempre» in legittima difesa chi respinge un'intrusione violenta o minacciosa." },
+        { label: "Uso legittimo delle armi: soggetti e presupposti", body: "Scriminante <strong>propria</strong>: spetta al pubblico ufficiale — per la dottrina maggioritaria, i soli appartenenti alla forza pubblica e ai corpi militari con compiti di ordine pubblico — e a chi, legalmente richiesto, gli presta assistenza (co. 2). È <strong>sussidiaria</strong> per la clausola di riserva: opera solo se difettano i presupposti degli artt. 51 e 52. Presupposti: fine di adempiere un dovere d'ufficio (mai una mera facoltà) e necessità di respingere una violenza, vincere una resistenza attiva (esclusa di regola la fuga meramente passiva) o impedire la consumazione dei delitti tassativi introdotti dalla l. 152/1975 (strage, omicidio volontario, rapina a mano armata, sequestro di persona, ecc.), per i quali dev'essere almeno varcata la soglia del tentativo. Il co. 3 rinvia a ipotesi speciali di legge, sempre nei limiti di necessità e proporzione." },
+        { label: "Stato di necessità: struttura e figure particolari", body: "La situazione necessitante richiede pericolo attuale — anche da <strong>forze naturali</strong> — non volontariamente causato (per la tesi prevalente anche il pericolo cagionato per colpa esclude la scriminante) e inevitabile: la fuga, anche dannosa, è sempre doverosa. Il danno temuto dev'essere <strong>grave</strong> (valutazione qualitativa e quantitativa) e riguardare la persona: tutti i diritti personali, incluso il diritto all'abitazione, mai quelli patrimoniali. Il <strong>soccorso di necessità</strong> è ammesso in via limitata (rapporti qualificati o netta prevalenza del bene salvato); il co. 2 esclude la scriminante per chi ha un particolare dovere giuridico di esporsi al pericolo; il co. 3 (costringimento psichico da minaccia altrui) è per la tesi dominante una <strong>scusante</strong>, con responsabilità dell'autore della minaccia. Parte della dottrina (Marinucci·Dolcini·Gatta) inquadra l'intero art. 54 tra le scusanti, per inesigibilità di una condotta diversa." },
+      ],
+      giurisprudenza: [
+        { label: "Difesa domiciliare: nessuna reazione indiscriminata", body: "Cass., Sez. V, 25 settembre 2017, n. 44011: la nuova formulazione dell'art. 52 c.p. «non legittima comunque un'indiscriminata reazione nei confronti del soggetto che si introduca nella propria dimora». Dopo la l. 36/2019, Cass., Sez. I, 21 luglio 2020, n. 21794 ha chiarito che il requisito della <strong>necessità</strong> appartiene all'essenza stessa della legittima difesa e che nemmeno il nuovo co. 4 consente reazioni indiscriminate: la presunzione riguarda la sola proporzione (Cass. n. 23977/2022; conf. Cass. n. 4529/2023). Resta invocabile la difesa putativa ex art. 59 c.p. se le circostanze hanno indotto incolpevolmente a credersi aggrediti (Cass. n. 29515/2018)." },
+        { label: "Eccesso colposo domiciliare e legittima difesa dei migranti", body: "L'art. 55 co. 2 c.p. (l. 36/2019) esclude la punibilità di chi eccede i limiti della difesa domiciliare in stato di <strong>minorata difesa</strong> — da accertare su concreti e concludenti elementi di fatto (SU 8 novembre 2021, n. 40275) — o di <strong>grave turbamento</strong> derivante dalla situazione di pericolo, che deve essere direttamente connesso all'evento pericoloso e non a stati d'animo preesistenti (Cass. n. 41528/2024). Inoltre Cass., Sez. VI, 26 aprile 2022, n. 15869 ha riconosciuto la legittima difesa ai migranti soccorsi in mare che resistono al respingimento verso la Libia: pericolo reale e attuale di offesa ingiusta ai diritti fondamentali." },
+        { label: "Art. 53 e fuga; art. 54 e furto per bisogno", body: "Cass., Sez. IV, 22 settembre 2020, n. 9961: la fuga non esclude in assoluto l'art. 53 c.p.; se le sue modalità mettono a repentaglio terzi, l'uso graduato e proporzionato delle armi è legittimo, salvo mezzi meno rischiosi. Cass. n. 3727/2024: l'uso legittimo delle armi putativo esige dati fattuali concreti, esclusi nel caso delle lesioni inferte a un giornalista inerte durante scontri di piazza. In tema di art. 54, Cass. n. 6635/2017 nega lo stato di necessità nel furto di generi alimentari per immediati bisogni, soddisfacibili in altro modo; Cass. n. 10694/2020 ammette il diritto all'abitazione tra i beni primari (occupazione solo per pericolo attuale e transitorio) ed esclude i diritti patrimoniali." },
+      ],
+      eccezioni: [
+        { label: "Fuga: doverosa nell'art. 54, non sempre nell'art. 52", body: "Errore classico: equiparare le due scriminanti sul punto. Nella legittima difesa la fuga esclude la necessità solo se è un <em>commodus discessus</em>, cioè priva di pericoli per sé o per terzi; nello stato di necessità, invece, ogni alternativa — anche pericolosa o dannosa per l'agente — rende il fatto non necessario, perché la vittima è un terzo innocente. Per la stessa ragione la proporzione ex art. 54 va valutata con rigore persino maggiore di quella ex art. 52." },
+        { label: "Pericolo volontariamente causato", body: "L'art. 54 esclude espressamente la scriminante se il pericolo è stato volontariamente causato dall'agente (per la tesi prevalente, anche se causato per colpa). L'art. 52 non contiene un requisito analogo: la giurisprudenza prevalente lo esige comunque, mentre la dottrina maggioritaria è contraria. Attenzione anche al soccorso difensivo: è di regola facoltativo, salvo che ricorrano i presupposti dell'omissione di soccorso ex art. 593 c.p." },
+      ],
+    },
+    sintesi: [
+      "Art. 52: pericolo attuale di offesa ingiusta, difesa necessaria e proporzionata (giudizio ex ante).",
+      "Il commodus discessus (fuga priva di pericoli) esclude la legittima difesa.",
+      "Difesa domiciliare (co. 2-4): presunzione limitata alla proporzione; necessità sempre da accertare.",
+      "Art. 55 co. 2: non punibile l'eccesso in minorata difesa o grave turbamento.",
+      "Art. 53: scriminante propria e sussidiaria del pubblico ufficiale; necessità e proporzione.",
+      "Art. 54: danno grave alla persona, pericolo inevitabile, offesa al terzo, indennizzo ex art. 2045 c.c.",
+    ],
+    esempi: [
+      { titolo: "Difesa legittima e proporzione ex ante", testo: "Rientrando a casa di notte, Sara viene aggredita da un uomo che le punta contro quella che appare in tutto un'arma da fuoco, intimandole di consegnare la borsa. Sara, che non ha alcuna via di fuga sicura, lo colpisce con violenza facendolo cadere e procurandogli lesioni. Si scoprirà poi che l'arma era un giocattolo. La scriminante dell'art. 52 c.p. opera ugualmente: la proporzione si valuta <strong>ex ante</strong>, comparando l'offesa arrecata all'aggressore non con quella effettivamente subita, ma con quella che Sara poteva ragionevolmente temere — un pericolo per la vita. Se invece l'aggressore si fosse già dato alla fuga e Sara lo avesse inseguito colpendolo, il pericolo sarebbe stato ormai esaurito: niente legittima difesa, semmai l'attenuante della provocazione." },
+      { titolo: "Stato di necessità e terzo estraneo", testo: "Durante un'escursione, Luca viene sorpreso da una tempesta improvvisa che mette in pericolo la sua vita: per ripararsi forza la porta di una baita chiusa, di proprietà del signor Ferri, e vi trascorre la notte. Ricorrono gli estremi dell'art. 54 c.p.: pericolo attuale di un danno grave alla persona, non causato volontariamente, non altrimenti evitabile, e fatto (violazione di domicilio e danneggiamento) proporzionato al pericolo. A differenza della legittima difesa, l'offesa cade su un terzo del tutto estraneo: per questo Luca, pur non punibile, dovrà corrispondere a Ferri un'<strong>equa indennità</strong> ex art. 2045 c.c. Se invece Luca avesse forzato la baita solo per risolvere stabilmente la propria esigenza abitativa, la scriminante non opererebbe: il pericolo deve essere attuale e transitorio." },
+    ],
+    flashcards: [
+      ["Quali sono gli elementi costitutivi della legittima difesa?", "La situazione aggressiva (pericolo attuale di un'offesa ingiusta a un diritto proprio o altrui) e la reazione difensiva, necessaria e proporzionata all'offesa."],
+      ["Quando il pericolo è attuale ex art. 52 c.p.?", "Quando è imminente al momento del fatto o persistente (aggressione in corso); non basta la mera minaccia né rileva il pericolo esaurito o futuro."],
+      ["Cosa presume la legittima difesa domiciliare secondo la giurisprudenza?", "La sola proporzione tra difesa e offesa (Cass. n. 21794/2020, n. 23977/2022): necessità, attualità del pericolo e offesa ingiusta vanno sempre accertate."],
+      ["Quando l'eccesso in difesa domiciliare non è punibile (art. 55 co. 2)?", "Se l'agente ha agito in stato di minorata difesa ex art. 61 n. 5 c.p. o di grave turbamento derivante dalla situazione di pericolo in atto."],
+      ["Chi può invocare l'uso legittimo delle armi ex art. 53 c.p.?", "Solo il pubblico ufficiale (per la dottrina maggioritaria, la forza pubblica) e chi, legalmente richiesto, gli presta assistenza: è una scriminante propria e sussidiaria."],
+      ["Quali beni sono difendibili con lo stato di necessità?", "Solo i diritti personali (vita, integrità fisica, libertà sessuale, onore, riservatezza, abitazione): mai i diritti patrimoniali, a differenza della legittima difesa."],
+    ],
+    comparativa: {
+      titolo: "Legittima difesa (art. 52) vs stato di necessità (art. 54)",
+      a: "Legittima difesa (art. 52 c.p.)",
+      b: "Stato di necessità (art. 54 c.p.)",
+      righe: [
+        { profilo: "Destinatario dell'offesa", a: "L'aggressore, autore del pericolo", b: "Un terzo estraneo alla situazione necessitante" },
+        { profilo: "Beni difendibili", a: "Ogni diritto, anche patrimoniale", b: "Solo diritti personali (danno grave alla persona)" },
+        { profilo: "Fonte del pericolo e necessità", a: "Condotta umana; la fuga esclude la scriminante solo se priva di pericoli", b: "Anche forze naturali; ogni alternativa, pur pericolosa, rende doverosa la fuga" },
+        { profilo: "Conseguenze civili", a: "Nessuna responsabilità civile", b: "Equa indennità al terzo ex art. 2045 c.c." },
+      ],
+    },
+    quiz: [
+      {
+        q: "La possibilità per l'aggredito di fuggire senza pericolo (c.d. commodus discessus):",
+        opts: ["Non incide mai sulla legittima difesa, che tutela l'onore dell'aggredito", "Esclude la legittima difesa, perché la reazione non è necessaria", "Rileva solo nella difesa domiciliare ex art. 52 co. 2", "Trasforma la scriminante in semplice attenuante della provocazione"],
+        correct: 1,
+        difficulty: 2,
+        commonError: "Ritenere che l'aggredito non sia mai tenuto a fuggire: la fuga priva di pericoli esclude la necessità della reazione.",
+        why: "La «costrizione» ex art. 52 co. 1 impone la stringente alternativa tra offendere ed essere offeso: se la fuga è possibile senza danni per sé o per terzi, la difesa non è necessaria e la scriminante non opera. La fuga non è invece esigibile quando comporti pericoli maggiori.",
+        fonte: "Marinucci·Dolcini·Gatta, PG — La legittima difesa",
+      },
+      {
+        q: "Secondo la giurisprudenza successiva alla l. 36/2019, nella legittima difesa domiciliare la presunzione legale riguarda:",
+        opts: ["Tutti gli elementi della scriminante, inclusa la necessità", "L'attualità del pericolo e l'ingiustizia dell'offesa", "Il solo requisito della proporzione", "La sola legittimità della detenzione dell'arma"],
+        correct: 2,
+        difficulty: 4,
+        commonError: "Leggere il co. 4 come presunzione integrale di legittima difesa, dimenticando l'interpretazione costituzionalmente orientata della Cassazione.",
+        why: "Cass. n. 21794/2020 ha affermato che la necessità appartiene all'essenza stessa della legittima difesa e che la riforma non consente reazioni indiscriminate: la presunzione si riferisce al solo requisito della proporzione (Cass. n. 23977/2022; conf. Cass. n. 4529/2023). Gli altri presupposti vanno sempre accertati.",
+        fonte: "Marinucci·Dolcini·Gatta, PG — La legittima difesa domiciliare",
+      },
+      {
+        q: "Ai sensi dell'art. 55 co. 2 c.p., chi eccede i limiti della legittima difesa domiciliare non è punibile se:",
+        opts: ["Ha agito in stato di minorata difesa o di grave turbamento derivante dal pericolo in atto", "L'aggressore si era introdotto nel domicilio in orario notturno", "Ha usato un'arma legittimamente detenuta, quale che sia lo stato d'animo", "Il turbamento derivava da uno stato d'ansia preesistente all'aggressione"],
+        correct: 0,
+        difficulty: 3,
+        commonError: "Estendere la non punibilità a ogni eccesso commesso nel domicilio o a turbamenti preesistenti ed estranei alla situazione di pericolo.",
+        why: "Il co. 2 dell'art. 55 (l. 36/2019) richiede la minorata difesa ex art. 61 n. 5 c.p., da accertare su concreti elementi di fatto (SU n. 40275/2021), o il grave turbamento psichico direttamente connesso all'evento pericoloso, non derivante da stati d'animo preesistenti (Cass. n. 41528/2024).",
+        fonte: "Marinucci·Dolcini·Gatta, PG — L'eccesso colposo in difesa domiciliare",
+      },
+      {
+        q: "L'uso legittimo delle armi ex art. 53 c.p. ha carattere sussidiario perché:",
+        opts: ["Si applica solo ai reati contro la pubblica amministrazione", "Opera solo dove difettino i presupposti degli artt. 51 e 52 c.p.", "Richiede la previa autorizzazione dell'autorità giudiziaria", "Può essere invocato da qualunque cittadino che assista il pubblico ufficiale"],
+        correct: 1,
+        difficulty: 3,
+        commonError: "Trascurare la clausola di riserva iniziale («ferme le disposizioni contenute nei due articoli precedenti») che fonda la sussidiarietà.",
+        why: "La clausola di riserva fa salvi gli artt. 51 e 52: la scriminante opera solo in via residuale rispetto ad adempimento del dovere e legittima difesa. È inoltre una scriminante propria: spetta al pubblico ufficiale e a chi, legalmente richiesto, gli presta assistenza, non a qualunque cittadino di propria iniziativa.",
+        fonte: "Marinucci·Dolcini·Gatta, PG — L'uso legittimo delle armi",
+      },
+      {
+        q: "Secondo la giurisprudenza, la resistenza che legittima l'uso delle armi ex art. 53 c.p. è:",
+        opts: ["Anche quella meramente passiva, come ogni forma di fuga", "Solo quella qualificabile come reato ex art. 336 c.p.", "Quella attiva, restando di regola esclusa la resistenza passiva", "Qualsiasi disobbedienza a un ordine dell'Autorità"],
+        correct: 2,
+        difficulty: 4,
+        commonError: "Includere ogni fuga nella resistenza rilevante: la fuga meramente passiva resta di regola fuori dall'art. 53, salvo pericolo per i terzi.",
+        why: "La tesi costante in giurisprudenza limita la scriminante alla resistenza attiva (resistenza armata, apposizione di ostacoli). La fuga, resistenza passiva, non la integra, salvo che le sue modalità pongano in pericolo terze persone: in tal caso l'uso graduato e proporzionato delle armi può essere legittimo (Cass. n. 9961/2020).",
+        fonte: "Marinucci·Dolcini·Gatta, PG — L'uso legittimo delle armi",
+      },
+      {
+        q: "Nello stato di necessità, il pericolo cagionato per colpa dall'agente:",
+        opts: ["Esclude la scriminante, secondo la tesi oggi prevalente", "È sempre irrilevante, perché l'art. 54 richiede il dolo", "Rileva solo se il danno temuto è patrimoniale", "Trasforma la scriminante in circostanza attenuante"],
+        correct: 0,
+        difficulty: 4,
+        commonError: "Leggere «volontariamente causato» come riferito al solo pericolo cagionato con dolo, escludendo la colpa.",
+        why: "La tesi prevalente considera volontariamente causate anche le situazioni di pericolo riconducibili a mera colpa, escludendo la scriminante: la soluzione tutela il terzo innocente e valorizza l'art. 42 c.p., che riferisce il requisito della volontà anche alla commissione colposa del fatto.",
+        fonte: "Marinucci·Dolcini·Gatta, PG — Lo stato di necessità",
+      },
+      {
+        q: "Chi danneggia il bene di un terzo estraneo agendo in stato di necessità ex art. 54 c.p.:",
+        opts: ["Non risponde penalmente né civilmente, come per ogni scriminante", "Non è punibile, ma deve al terzo un'equa indennità ex art. 2045 c.c.", "Risponde civilmente dell'intero danno a titolo di colpa", "È punibile a titolo di colpa se il fatto è previsto come delitto colposo"],
+        correct: 1,
+        difficulty: 1,
+        commonError: "Applicare allo stato di necessità la regola generale dell'irrilevanza civile del fatto scriminato, dimenticando l'art. 2045 c.c.",
+        why: "Poiché l'offesa cade su un terzo estraneo alla situazione necessitante, lo stato di necessità fa eccezione all'ordinaria efficacia civile delle scriminanti: sorge un'obbligazione indennitaria, determinata in via equitativa, che ristora almeno in parte il terzo dei danni subiti.",
+        fonte: "Marinucci·Dolcini·Gatta, PG — Lo stato di necessità",
+      },
+    ],
+    veroFalso: [
+      { aff: "La legittima difesa può essere invocata anche a tutela di un diritto patrimoniale.", vero: true, traccia: "Vero. Oggetto dell'aggressione ex art. 52 c.p. può essere ogni diritto, inteso come qualsiasi situazione giuridica attiva, inclusi i diritti patrimoniali. È invece lo stato di necessità a essere circoscritto ai soli diritti personali, richiedendo il pericolo di un danno grave alla persona." },
+      { aff: "Nello stato di necessità la fuga, anche se pericolosa per l'agente, è sempre doverosa.", vero: true, traccia: "Vero. L'esistenza di alternative, anche pericolose o dannose per l'agente, esclude la necessità ex art. 54 c.p., perché l'azione lesiva colpisce un terzo estraneo. Nella legittima difesa, invece, la fuga esclude la scriminante solo quando è priva di pericoli (commodus discessus)." },
+      { aff: "Il pericolo rilevante per la legittima difesa può derivare anche da forze della natura.", vero: false, traccia: "Falso. Nell'art. 52 c.p. il pericolo deve essere riconducibile a una condotta umana, anche per il tramite di un animale o di una cosa. È lo stato di necessità ex art. 54 c.p. ad ammettere anche il pericolo derivante da forze naturali; se il pericolo nasce da un'aggressione umana e si reagisce contro l'aggressore, opera l'art. 52." },
+    ],
+    aperta: {
+      q: "Il candidato illustri i requisiti della legittima difesa, anche domiciliare, evidenziando le differenze rispetto allo stato di necessità.",
+      traccia: "L'art. 52 co. 1 c.p. richiede una situazione aggressiva — pericolo attuale (imminente o persistente) di un'offesa ingiusta, arrecata non iure da una condotta umana, a un diritto proprio o altrui — e una reazione difensiva necessaria (inevitabile altrimenti: il commodus discessus la esclude) e proporzionata, con giudizio ex ante sulle circostanze concrete. La difesa domiciliare (co. 2-4, l. 59/2006 e l. 36/2019) aggiunge, in caso di violazione di domicilio o luoghi equiparati, una presunzione che la giurisprudenza, con interpretazione costituzionalmente orientata, riferisce alla sola proporzione, dovendosi sempre accertare necessità, attualità del pericolo e offesa ingiusta; l'art. 55 co. 2 esclude poi la punibilità dell'eccesso commesso in minorata difesa o grave turbamento. Lo stato di necessità (art. 54) differisce sotto più profili: l'offesa cade su un terzo estraneo e non sull'aggressore; sono difendibili solo i diritti personali dal pericolo di un danno grave; il pericolo può derivare anche da forze naturali ma non deve essere stato volontariamente causato; la necessità opera con maggior rigore, essendo doverosa anche la fuga pericolosa; residua infine l'obbligo di equa indennità ex art. 2045 c.c.",
+      fonte: "Marinucci·Dolcini·Gatta, PG — La legittima difesa e lo stato di necessità",
+    },
+    consigliate: ["comparativa", "mcq", "esempi", "flashcards", "mappa"],
+    media: {
+      podcast: {
+        title: "Artt. 52, 53 e 54: difendersi, coartare, salvarsi",
+        chapters: [["Legittima difesa: aggressione e reazione", 0], ["La difesa domiciliare e l'art. 55 co. 2", 320], ["Uso legittimo delle armi", 620], ["Stato di necessità e differenze con l'art. 52", 840]],
+      },
+      mappa: true,
+    },
+  },
+];

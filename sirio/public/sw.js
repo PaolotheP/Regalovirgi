@@ -2,7 +2,7 @@
    Strategia: network-first per l'HTML (aggiornamenti subito), cache-first
    per asset immutabili (js/css/font/immagini). Nessun dato personale passa
    di qui: i progressi vivono in localStorage/IndexedDB. */
-const CACHE = "sirio-v1";
+const CACHE = "sirio-v3";
 
 self.addEventListener("install", () => {
   self.skipWaiting();

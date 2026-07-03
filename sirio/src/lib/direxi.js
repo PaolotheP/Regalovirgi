@@ -4,7 +4,15 @@
  * angolo dello schermo o dai pulsanti "?" accanto a ogni funzione.
  * ======================================================================== */
 
+import { currentSubject, currentSubjectId } from "./subject.js";
+const SUBJ = currentSubject();
+
 export const DIREXI_GUIDES = {
+  materia: {
+    titolo: "La materia",
+    testo: `Stai studiando ${SUBJ.nome}. Ogni materia è una costellazione a sé: il piano, le stelle e i progressi restano separati. Da «Cambia» puoi passare all'altra materia in qualsiasi momento — quando torni, ritrovi tutto come l'avevi lasciato.`,
+    consiglio: "Cambiare materia non cancella nulla: i due cieli vivono in parallelo.",
+  },
   cruscotto: {
     titolo: "Il Cruscotto",
     testo: "È il tuo centro di comando: qui vedi in un colpo solo quanto manca all'esame, la tua prontezza rispetto alla soglia di chi è stato promosso, le stelle che si stanno spegnendo e il prossimo passo da fare oggi. Aprilo ogni giorno: ti dice sempre da dove ricominciare, senza doverci pensare.",
@@ -22,7 +30,7 @@ export const DIREXI_GUIDES = {
   },
   argomenti: {
     titolo: "Gli Argomenti",
-    testo: "Tutto l'indice del SuperCompendio di Diritto penale, capitolo per capitolo. Ogni argomento ha la Lettura a strati: parti dall'essenziale e apri solo la densità che ti serve — approfondimenti, giurisprudenza, eccezioni, esempi. In cima trovi le funzioni consigliate per quell'argomento specifico.",
+    testo: `Tutto l'indice di ${SUBJ.nome}, capitolo per capitolo, dal compendio dell'editore. Ogni argomento ha la Lettura a strati: parti dall'essenziale e apri solo la densità che ti serve — approfondimenti, giurisprudenza, eccezioni, esempi. In cima trovi le funzioni consigliate per quell'argomento specifico.`,
     consiglio: "Prima leggi l'essenziale di tutto il capitolo, poi torna sugli strati profondi: il quadro prima del dettaglio.",
   },
   ripasso: {
@@ -117,7 +125,7 @@ export const DIREXI_GUIDES = {
   },
   bandi: {
     titolo: "Bandi & Concorsi",
-    testo: "Le date e i bandi dei concorsi pubblici che richiedono il diritto penale: magistratura, notariato, avvocatura dello Stato. Per chi studia con un obiettivo oltre l'esame.",
+    testo: currentSubjectId() === "tributario" ? "Le date e i bandi dei concorsi pubblici in cui il diritto tributario conta davvero: magistratura tributaria, Agenzia delle Entrate. Per chi studia con un obiettivo oltre l'esame." : "Le date e i bandi dei concorsi pubblici che richiedono il diritto penale: magistratura, notariato, avvocatura dello Stato. Per chi studia con un obiettivo oltre l'esame.",
     consiglio: "Controlla i termini di iscrizione una volta a settimana: i bandi non aspettano.",
   },
   feedback: {
