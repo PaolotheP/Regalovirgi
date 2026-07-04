@@ -13,7 +13,7 @@ import { Button, Input, Segmented, Ring, Select } from "../components/ui.jsx";
 import { DirexiStar } from "./Direxi.jsx";
 import PlanForging from "./PlanForging.jsx";
 import { SubjectCards, performSubjectSwitch } from "../components/SubjectSwitch.jsx";
-import { currentSubject, currentSubjectId, getSubject } from "../lib/subject.js";
+import { currentSubject, currentSubjectId, getSubject, persistSubjectChoice } from "../lib/subject.js";
 import { daysBetween, parseDate, today } from "../lib/utils.js";
 import { cn } from "../lib/utils.js";
 
@@ -40,11 +40,14 @@ export default function Onboarding() {
     // eslint-disable-next-line
   }, []);
 
+  /* La materia viene chiesta PRIMA dell'università: l'elenco degli atenei
+     dipende dalla materia (es. la LUM compare per Tributario), quindi la
+     scelta della costellazione deve precedere tutto il resto. */
   const steps = useMemo(() => {
     const arr = [
       { key: "nome", valid: () => p.name.trim().length > 0 },
-      { key: "mode", valid: () => p.mode && (p.mode === "concorso" || (p.university && p.year)) },
       { key: "esame", valid: () => true },
+      { key: "mode", valid: () => p.mode && (p.mode === "concorso" || (p.university && p.year)) },
       { key: "partenza", valid: () => p.startFromZero !== undefined && (p.startFromZero || (p.studiedBefore?.length || 0) > 0) },
       { key: "tempo", valid: () => !!p.examDate && p.hoursPerDay > 0 },
       { key: "obiettivo", valid: () => !!p.goal },
@@ -74,6 +77,7 @@ export default function Onboarding() {
 
   function nextStep() {
     if (!cur.valid()) return;
+    if (cur.key === "esame") persistSubjectChoice(currentSubjectId()); // conferma esplicita della materia
     if (isLast) {
       setForging(true); // la costellazione si forma; al termine, il piano è reale
     } else setStep((s) => s + 1);
@@ -231,11 +235,11 @@ function StepBody({ stepKey, p, set }) {
         <p className="mt-2 text-text-soft">Ogni materia è una costellazione a sé: piano, stelle e progressi restano separati.</p>
         <div className="mt-6">
           <SubjectCards value={subj.id} onPick={(id) => {
-            if (id === subj.id) return;
+            if (id === subj.id) { persistSubjectChoice(id); return; }
             try {
               sessionStorage.setItem("sirio_onb_draft", JSON.stringify({
-                subject: id, step: 2,
-                patch: { name: p.name, mode: p.mode, examDate: p.examDate, hoursPerDay: p.hoursPerDay, goal: p.goal },
+                subject: id, step: 1,
+                patch: { name: p.name, examDate: p.examDate, hoursPerDay: p.hoursPerDay, goal: p.goal },
               }));
             } catch {}
             performSubjectSwitch(id);

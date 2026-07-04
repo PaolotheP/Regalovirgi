@@ -12,6 +12,7 @@
 
 export const UNIVERSITIES = [
   { id: "bari", nome: 'Università di Bari "Aldo Moro"', citta: "Bari" },
+  { id: "lum", nome: 'Università LUM "Giuseppe Degennaro" (già Jean Monnet)', citta: "Casamassima · Bari" },
   { id: "sapienza", nome: "Sapienza Università di Roma", citta: "Roma" },
   { id: "luiss", nome: "LUISS Guido Carli", citta: "Roma" },
 ];
