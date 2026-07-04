@@ -1,0 +1,18 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="si-star" x1="130" y1="120" x2="390" y2="420" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#9fd8ff"/><stop offset="0.5" stop-color="#2f7bff"/><stop offset="1" stop-color="#12206b"/>
+    </linearGradient>
+    <radialGradient id="si-core" cx="0.45" cy="0.42" r="0.62">
+      <stop offset="0" stop-color="#ffffff"/><stop offset="0.6" stop-color="#bfe2ff"/><stop offset="1" stop-color="#2f6fe6"/>
+    </radialGradient>
+    <radialGradient id="si-halo" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#4ea5ff" stop-opacity="0.5"/><stop offset="0.7" stop-color="#4ea5ff" stop-opacity="0.12"/><stop offset="1" stop-color="#4ea5ff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <circle cx="240" cy="268" r="210" fill="url(#si-halo)"/>
+  <path fill="url(#si-star)" d="M240 58 C252 190 268 218 400 268 C268 318 252 346 240 478 C228 346 212 318 80 268 C212 218 228 190 240 58 Z"/>
+  <circle cx="240" cy="268" r="34" fill="url(#si-core)"/>
+  <path fill="url(#si-star)" d="M406 96 C410 138 416 148 458 156 C416 164 410 174 406 216 C402 174 396 164 354 156 C396 148 402 138 406 96 Z"/>
+  <circle cx="406" cy="156" r="9" fill="#dff0ff"/>
+</svg>
