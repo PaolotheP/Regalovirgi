@@ -93,19 +93,16 @@ export default function Plan() {
         ))}
       </div>
 
-      <AnimatePresence mode="wait">
+      {/* cambio vista in solo CSS (autoriparante): mai bloccato a opacità 0 */}
+      <div key={view} className="anim-fadein">
         {view === "timeline" ? (
-          <motion.div key="tl" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }}>
-            <Timeline days={days} dayFill={dayFill} selIdx={selIdx} setSelIdx={setSelIdx}
-              dotRefs={dotRefs} todayISO={todayISO} reviewFrom={plan.reviewFrom} nav={nav} sel={sel}
-              doneDays={doneDays} studiedDays={studiedDays} />
-          </motion.div>
+          <Timeline days={days} dayFill={dayFill} selIdx={selIdx} setSelIdx={setSelIdx}
+            dotRefs={dotRefs} todayISO={todayISO} reviewFrom={plan.reviewFrom} nav={nav} sel={sel}
+            doneDays={doneDays} studiedDays={studiedDays} />
         ) : (
-          <motion.div key="cal" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }}>
-            <CalendarView days={days} plan={plan} todayISO={todayISO} dispatch={dispatch} nav={nav} sel={sel} />
-          </motion.div>
+          <CalendarView days={days} plan={plan} todayISO={todayISO} dispatch={dispatch} nav={nav} sel={sel} />
         )}
-      </AnimatePresence>
+      </div>
 
       {/* ===== PROPOSTE DI RIPASSO ===== */}
       <Card className="mt-5 p-5">

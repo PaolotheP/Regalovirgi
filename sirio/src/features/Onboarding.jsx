@@ -103,11 +103,10 @@ export default function Onboarding() {
         </div>
 
         <div className="flex flex-1 flex-col justify-center py-8">
-          <AnimatePresence mode="wait">
-            <motion.div key={cur.key} initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -30 }} transition={{ duration: 0.35 }}>
-              <StepBody stepKey={cur.key} p={p} set={set} />
-            </motion.div>
-          </AnimatePresence>
+          {/* transizione tra i passi in solo CSS: mai bloccata a opacità 0 */}
+          <div key={cur.key} className="anim-pagein" style={{ "--pgx": "30px" }}>
+            <StepBody stepKey={cur.key} p={p} set={set} />
+          </div>
         </div>
 
         <div className="flex items-center justify-between">

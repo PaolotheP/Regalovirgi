@@ -426,11 +426,9 @@ export default function DirexiTour() {
           {layout.place === "right" && <div className="absolute -left-2 top-16 h-4 w-4 rotate-45 rounded-sm border-b border-l border-line/20 bg-bg-2" />}
           {layout.place === "below" && <div className="absolute left-10 -top-2 h-4 w-4 rotate-45 rounded-sm border-l border-t border-line/20 bg-bg-2" />}
 
-          <AnimatePresence mode="wait">
-            <motion.div key={i}
-              initial={{ opacity: 0, scale: 0.94, y: 8 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.96, y: -6 }}
-              transition={{ duration: 0.26, ease: [0.2, 0.8, 0.2, 1] }}
-              className="glass-strong flex max-h-[min(84vh,660px)] flex-col rounded-xl3 p-5 shadow-soft">
+          {/* scheda del passo in solo CSS (autoriparante) */}
+            <div key={i}
+              className="anim-popin glass-strong flex max-h-[min(84vh,660px)] flex-col rounded-xl3 p-5 shadow-soft">
               {/* contenuto scorrevole; i comandi restano sempre visibili sotto */}
               <div className="min-h-0 flex-1 overflow-y-auto pr-1">
               <div className="flex items-start gap-3">
@@ -486,8 +484,7 @@ export default function DirexiTour() {
                   </button>
                 )}
               </div>
-            </motion.div>
-          </AnimatePresence>
+            </div>
         </div>
       </motion.div>
     </div>

@@ -115,10 +115,9 @@ export function QuizRun() {
         </div>
         <h2 className="font-display text-xl font-bold leading-snug text-text-hi">{q.q}</h2>
 
-        {/* Scommessa sulla risposta */}
-        <AnimatePresence mode="wait">
-          {phase === "bet" && (
-            <motion.div key="bet" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
+        {/* Scommessa sulla risposta (solo CSS: mai bloccata a opacità 0) */}
+        {phase === "bet" && (
+          <div className="anim-fadein">
               <div className="mt-6 rounded-xl2 glass-brand p-4">
                 <div className="mb-3 flex items-center gap-2 text-sm font-semibold text-glow"><Target size={16} /> Quanto sei sicuro di saperla?</div>
                 <div className="grid grid-cols-3 gap-2">
@@ -132,9 +131,8 @@ export function QuizRun() {
                 </div>
                 <p className="mt-2 text-xs text-text-mute">La scommessa premia chi ha ragione ed è ben calibrato; penalizza la sicurezza a vuoto.</p>
               </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+          </div>
+        )}
 
         {/* Opzioni */}
         {phase !== "bet" && (

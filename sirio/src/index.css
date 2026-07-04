@@ -285,6 +285,19 @@ body {
   .prose-nplus em { @apply text-glow not-italic font-medium; }
 }
 
+/* ================= TRANSIZIONI DI PAGINA AUTORIPARANTI ================== */
+/* Solo CSS: se l'animazione non parte o viene interrotta, l'elemento resta
+   comunque VISIBILE (fill "both" → stato finale). Sostituiscono le
+   coreografie JS enter/exit che in rari casi potevano lasciare la pagina
+   bloccata a opacità 0 (schermata vuota senza alcun errore). */
+@keyframes sirioPageIn { from { opacity: 0; transform: translateX(var(--pgx, 24px)) scale(0.995); } to { opacity: 1; transform: none; } }
+.anim-pagein { animation: sirioPageIn 0.32s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+@keyframes sirioFadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+.anim-fadein { animation: sirioFadeIn 0.26s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+@keyframes sirioPopIn { from { opacity: 0; transform: translateY(8px) scale(0.96); } to { opacity: 1; transform: none; } }
+.anim-popin { animation: sirioPopIn 0.26s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+@media (prefers-reduced-motion: reduce) { .anim-pagein, .anim-fadein, .anim-popin { animation-duration: 0.001s; } }
+
 /* Campo stellato dello sfondo: spento di giorno, acceso di notte */
 .sirio-stars { opacity: 0; }
 .dark .sirio-stars { opacity: 0.9; }

@@ -300,17 +300,14 @@ export default function Shell() {
 
       {/* pb-28: lascia respiro alla stella Direxi fissa in basso a destra */}
       <main className="mx-auto w-full max-w-6xl px-4 py-6 pb-28 lg:px-8 lg:py-10 lg:pb-28">
-        <AnimatePresence mode="wait" custom={dir}>
-          <motion.div key={loc.pathname} custom={dir}
-            initial={{ opacity: 0, x: dir * 32, scale: 0.995 }}
-            animate={{ opacity: 1, x: 0, scale: 1 }}
-            exit={{ opacity: 0, x: dir * -24, scale: 0.995 }}
-            transition={{ duration: 0.32, ease: [0.2, 0.8, 0.2, 1] }}>
-            <ErrorBoundary resetKey={loc.pathname}>
-              <Outlet />
-            </ErrorBoundary>
-          </motion.div>
-        </AnimatePresence>
+        {/* Transizione di pagina in SOLO CSS (autoriparante): la vecchia
+            AnimatePresence mode="wait" poteva restare bloccata a opacità 0
+            se una navigazione interrompeva l'uscita → pagina "vuota". */}
+        <div key={loc.pathname} className="anim-pagein" style={{ "--pgx": `${dir * 28}px` }}>
+          <ErrorBoundary resetKey={loc.pathname}>
+            <Outlet />
+          </ErrorBoundary>
+        </div>
       </main>
 
       {/* Direxi: tour spotlight + stella compagna nell'angolo */}
